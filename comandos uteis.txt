@@ -1,0 +1,5 @@
+javac -cp /mnt/d/Faculdade/Ead/web/apache-tomcat-9.0.39/apache-tomcat-9.0.39/lib/servlet-api.jar src/br/ufscar/dc/dsw/AloMundoServlet.java -d dist/WEB-INF/classes
+
+
+
+/usr/lib/jvm/java-8-openjdk-amd64/bin/jar -cvf AloMundo.war -C dist .
