@@ -1,0 +1,5 @@
+Criar classes HOTEL, SITE_RESERVA, PROMOCAO
+Criar manager de HOTEL, SITE_RESERVA, PROMOCAO (gerencia o CRUD[Create, Read, Update, Delete])
+Sistema de login de admin
+Internacionalizar
+
