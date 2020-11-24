@@ -1,5 +1,18 @@
-Criar classes HOTEL, SITE_RESERVA, PROMOCAO
-Criar manager de HOTEL, SITE_RESERVA, PROMOCAO (gerencia o CRUD[Create, Read, Update, Delete])
-Sistema de login de admin
-Internacionalizar
+Autenticação e autorização de usuario e admin(Modulo 5-2)
 
+
+Internacionalizar{(Modulo 3-6)
+    Projetar os hmtls com as devidas tags para facilitar as expansão
+}
+
+Banco de dados com sql{(Modulo 4 e 5)
+    MySql inicialmente
+    Criar POJO HOTEL, SITE_RESERVA, PROMOCAO
+    Criar DAO HOTEL, SITE_RESERVA, PROMOCAO
+    Criar manager de HOTEL, SITE_RESERVA, PROMOCAO (gerencia o CRUD[Create, Read, Update, Delete])
+}
+
+Duvidas até agr{
+    Tem q usar AJAX?(modulo 5-3)(lendo o arquivo de requisitos parece não precisar)
+    R7: não criar promoção mesma data site hotel, o que quer dizer?
+}

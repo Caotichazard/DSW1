@@ -2,19 +2,19 @@ package br.ufscar.dc.dsw.beans;
 
 
 
-public class Hotel{
+public class SiteReservas{
     private String email;
     private String senha;
-    private String CNPJ;
+    private String url;
     private String nome;
-    private String cidade;
+    private String telefone;
 
-    public Hotel(String email, String senha, String CNPJ, String nome, String cidade){
+    public SiteReservas(String email, String senha, String url, String nome, String telefone){
         this.email = email;
         this.senha = senha;
-        this.CNPJ = CNPJ;
+        this.url = url;
         this.nome = nome;
-        this.cidade = cidade;
+        this.telefone = telefone;
     }
 
     public void setEmail(String email){
@@ -33,12 +33,12 @@ public class Hotel{
         return this.senha;
     }
 
-    public void setCNPJ(String CNPJ){
-        this.CNPJ = CNPJ;
+    public void setUrl(String url){
+        this.url = url;
     }
 
-    public String getCNPJ(){
-        return this.CNPJ;
+    public String getUrl(){
+        return this.url;
     }
 
     public void setNome(String nome){
@@ -49,11 +49,11 @@ public class Hotel{
         return this.nome;
     }
 
-    public void setCidade(String cidade){
-        this.cidade = cidade;
+    public void setTelefone(String telefone){
+        this.telefone = telefone;
     }
 
-    public String getCidade(){
-        return this.cidade;
+    public String getTelefone(){
+        return this.telefone;
     }
 }
