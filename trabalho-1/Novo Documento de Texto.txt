@@ -1,4 +1,11 @@
-Autenticação e autorização de usuario e admin(Modulo 5-2)
+Autenticação e autorização de usuario e admin(Modulo 5-2){
+    criar os POJO de usuario
+    criar os DAO de usuario
+    criar os Controller
+    criar o classe Erro
+    fazer as paginas de cada usuario
+
+}
 
 
 Internacionalizar{(Modulo 3-6)
@@ -7,7 +14,7 @@ Internacionalizar{(Modulo 3-6)
 
 Banco de dados com sql{(Modulo 4 e 5)
     MySql inicialmente
-    Criar POJO HOTEL, SITE_RESERVA, PROMOCAO
+    Criar POJO HOTEL, SITE_RESERVA, PROMOCAO //ja foi criado no beans uma base deles
     Criar DAO HOTEL, SITE_RESERVA, PROMOCAO
     Criar manager de HOTEL, SITE_RESERVA, PROMOCAO (gerencia o CRUD[Create, Read, Update, Delete])
 }
