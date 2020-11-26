@@ -23,3 +23,5 @@ Duvidas até agr{
     Tem q usar AJAX?(modulo 5-3)(lendo o arquivo de requisitos parece não precisar)
     R7: não criar promoção mesma data site hotel, o que quer dizer?
 }
+
+Comenta o codigo maluco
