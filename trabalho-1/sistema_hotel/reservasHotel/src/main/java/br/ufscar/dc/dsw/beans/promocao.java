@@ -41,19 +41,19 @@ public class Promocao{
         return this.preco;
     }
 
-    public void setInicio(String inicio){
+    public void setInicio(Date inicio){
         this.inicio = inicio;
     }
 
-    public String getInicio(){
+    public Date getInicio(){
         return this.inicio;
     }
 
-    public void setFim(String fim){
+    public void setFim(Date fim){
         this.fim = fim;
     }
 
-    public String getFim(){
+    public Date getFim(){
         return this.fim;
     }
 }
