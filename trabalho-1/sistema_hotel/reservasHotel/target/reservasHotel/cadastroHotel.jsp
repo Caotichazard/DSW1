@@ -7,13 +7,13 @@
     </head>
     <body>
         <fmt:bundle basename="messages">
-            <form method="POST">
+            <form method="POST" action="storeHotel.jsp">
                 <fieldset >
                     <legend><fmt:message key="cadastroHotel"/></legend>
                     <fmt:message key="email"/><input type="text" name="email" /><br/>
                     <fmt:message key="senha"/><input type="text" name="senha" /><br/>
+                    <fmt:message key="nomeHotel"/><input type="text" name="nomeHotel" /><br/>
                     <fmt:message key="cnpj"/><input type="text" name="cnpj" /><br/>
-                    <fmt:message key="nomeHotel"/><input type="nomeHotel" name="cnpj" /><br/>
                     <fmt:message key="cidade"/><input type="text" name="cidade" /><br/>
                     <input type="submit" value="<fmt:message key="input"/>" />
                 </fieldset>
