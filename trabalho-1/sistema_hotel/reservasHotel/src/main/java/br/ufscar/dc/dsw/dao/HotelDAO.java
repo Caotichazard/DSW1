@@ -14,15 +14,16 @@ import br.ufscar.dc.dsw.domain.Hotel;
 public class HotelDAO extends GenericDAO {
 
     public void insert(Hotel hotel) {    
-        String sql = "INSERT INTO Hotel (nome, login, senha, papel) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Hotel(cnpj, nome, cidade, email, senha) VALUES (?, ?, ?, ?, ?)";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);;    
             statement = conn.prepareStatement(sql);
-            statement.setString(1, hotel.getNome());
-            statement.setString(2, hotel.getLogin());
-            statement.setString(3, hotel.getSenha());
-            statement.setString(4, hotel.getPapel());
+            statement.setString(1, hotel.getCNPJ());
+            statement.setString(2, hotel.getNome());
+            statement.setString(3, hotel.getCidade());
+            statement.setString(4, hotel.getEmail());
+            statement.setString(5, hotel.getSenha());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -39,12 +40,12 @@ public class HotelDAO extends GenericDAO {
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                long id = resultSet.getLong("id");
+                String CNPJ = resultSet.getString("CNPJ");
                 String nome = resultSet.getString("nome");
-                String login = resultSet.getString("login");
+                String cidade = resultSet.getString("cidade");
+                String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
-                String papel = resultSet.getString("papel");
-                Hotel hotel = new Hotel(id, nome, login, senha, papel);
+                Hotel hotel = new Hotel(email, senha, CNPJ, nome, cidade);
                 listaHotels.add(hotel);
             }
             resultSet.close();
@@ -61,7 +62,7 @@ public class HotelDAO extends GenericDAO {
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, hotel.getId());
+            statement.setString(1, hotel.getCNPJ());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -70,15 +71,16 @@ public class HotelDAO extends GenericDAO {
     }
     
     public void update(Hotel hotel) {
-        String sql = "UPDATE Hotel SET nome = ?, login = ?, senha = ?, papel = ? WHERE id = ?";
+        String sql = "UPDATE Hotel SET nome = ?, cidade = ?, email = ?, senha = ? WHERE cnpj = ?";
     
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, hotel.getNome());
-            statement.setString(2, hotel.getLogin());
-            statement.setString(3, hotel.getSenha());
-            statement.setString(4, hotel.getPapel());
+            statement.setString(2, hotel.getCidade());
+            statement.setString(3, hotel.getEmail());
+            statement.setString(4, hotel.getSenha());
+            statement.setString(5, hotel.getCNPJ());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -87,20 +89,21 @@ public class HotelDAO extends GenericDAO {
         }
     }
     
-    public Hotel getbyID(Long id) {
+    public Hotel getbyCNPJ(String cnpj) {
         Hotel hotel = null;
-        String sql = "SELECT * from Hotel WHERE id = ?";
+        String sql = "SELECT * from Hotel WHERE cnpj = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setLong(1, id);
+            statement.setString(1, cnpj);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 String nome = resultSet.getString("nome");
-                String login = resultSet.getString("login");
+                String cidade = resultSet.getString("cidade");
+                String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
-                String papel = resultSet.getString("papel");
-                hotel = new Hotel(id, nome, login, senha, papel);
+                String CNPJ = resultSet.getString("cnpj");
+                hotel = new Hotel(email, senha, CNPJ, nome, cidade);
             }
             resultSet.close();
             statement.close();
@@ -111,20 +114,21 @@ public class HotelDAO extends GenericDAO {
         return hotel;
     }
     
-    public Hotel getbyLogin(String login) {
+    public Hotel getbyEmail(String email) {
         Hotel hotel = null;
-        String sql = "SELECT * from Hotel WHERE login = ?";
+        String sql = "SELECT * from Hotel WHERE email = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, login);
+            statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-            	Long id = resultSet.getLong("id");
-                String nome = resultSet.getString("nome");
+            	String nome = resultSet.getString("nome");
+                String cidade = resultSet.getString("cidade");
+                String emailT = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
-                String papel = resultSet.getString("papel");
-                hotel = new Hotel(id, nome, login, senha, papel);
+                String CNPJ = resultSet.getString("cnpj");
+                hotel = new Hotel(emailT, senha, CNPJ, nome, cidade);
             }
             resultSet.close();
             statement.close();
@@ -135,4 +139,4 @@ public class HotelDAO extends GenericDAO {
         return hotel;
     }
 }
-*/
+

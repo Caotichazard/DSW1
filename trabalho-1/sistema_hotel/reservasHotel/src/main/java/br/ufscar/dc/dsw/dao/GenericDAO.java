@@ -25,7 +25,7 @@ abstract public class GenericDAO {
     	 */
     	
     	/* Conexão banco de dados MySQL */
-    	String url = "jdbc:mysql://localhost:3306/Login";
-    	return DriverManager.getConnection(url, "root", "root");
+    	String url = "jdbc:mysql://localhost:3306/Hoteis";
+    	return DriverManager.getConnection(url, "root", "");//sem root na senha pq na minha maquina quebra
     }
 }

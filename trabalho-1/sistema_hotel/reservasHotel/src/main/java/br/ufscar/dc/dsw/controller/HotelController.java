@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 //Alterar os argumentos para ficar correto em relação ao hotel
-@WebServlet(urlPatterns = "/hotels/*")
+@WebServlet(urlPatterns = "/hotel/*")
 public class HotelController extends HttpServlet {
 
     private static final long serialVersionUID = 1L; 
@@ -40,18 +40,18 @@ public class HotelController extends HttpServlet {
 
         try {
             switch (action) {
-                case "/cadastro":
-                    apresentaFormCadastro(request, response);
-                    break;
+                //case "/cadastro":
+                    //apresentaFormCadastro(request, response);
+                    //break;
                 case "/insercao":
                     insere(request, response);
                     break;
                 case "/remocao":
                     remove(request, response);
                     break;
-                case "/edicao":
-                    apresentaFormEdicao(request, response);
-                    break;
+                //case "/edicao":
+                    //apresentaFormEdicao(request, response);
+                    //break;
                 case "/atualizacao":
                     atualize(request, response);
                     break;
@@ -70,7 +70,7 @@ public class HotelController extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/lista.jsp");
         dispatcher.forward(request, response);
     }
-
+    /*
     private Map<Long, String> getEditoras() {
         Map <Long,String> editoras = new HashMap<>();
         for (Editora editora: new EditoraDAO().getAll()) {
@@ -93,19 +93,17 @@ public class HotelController extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/formulario.jsp");
         dispatcher.forward(request, response);
     }
-
+    */
     private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         
-        String titulo = request.getParameter("titulo");
-        String autor = request.getParameter("autor");
-        Integer ano = Integer.parseInt(request.getParameter("ano"));
-        Float preco = Float.parseFloat(request.getParameter("preco"));
-        
-        Long editoraID = Long.parseLong(request.getParameter("editora"));
-        Editora editora = new EditoraDAO().get(editoraID);
-        
-        Hotel hotel = new Hotel(titulo, autor, ano, preco, editora);
+        String nome = request.getParameter("nome");
+        String cidade = request.getParameter("cidade");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String CNPJ = request.getParameter("cnpj");
+
+        Hotel hotel = new Hotel(email, senha, CNPJ, nome, cidade);
         dao.insert(hotel);
         response.sendRedirect("lista");
     }
@@ -113,24 +111,21 @@ public class HotelController extends HttpServlet {
     private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-        Long id = Long.parseLong(request.getParameter("id"));
-        String titulo = request.getParameter("titulo");
-        String autor = request.getParameter("autor");
-        Integer ano = Integer.parseInt(request.getParameter("ano"));
-        Float preco = Float.parseFloat(request.getParameter("preco"));
-        
-        Long editoraID = Long.parseLong(request.getParameter("editora"));
-        Editora editora = new EditoraDAO().get(editoraID);
-        
-        Hotel hotel = new Hotel(id, titulo, autor, ano, preco, editora);
+        String nome = request.getParameter("nome");
+        String cidade = request.getParameter("cidade");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String CNPJ = request.getParameter("cnpj");
+
+        Hotel hotel = new Hotel(email, senha, CNPJ, nome, cidade);
         dao.update(hotel);
         response.sendRedirect("lista");
     }
 
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Long id = Long.parseLong(request.getParameter("id"));
+        String CNPJ = request.getParameter("cnpj");
 
-        Hotel hotel = new Hotel(id);
+        Hotel hotel = new Hotel(CNPJ);
         dao.delete(hotel);
         response.sendRedirect("lista");
     }

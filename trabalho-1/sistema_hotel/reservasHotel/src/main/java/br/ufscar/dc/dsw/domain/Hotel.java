@@ -16,6 +16,9 @@ public class Hotel{
         this.nome = nome;
         this.cidade = cidade;
     }
+    public Hotel(String CNPJ){
+        this.CNPJ = CNPJ;
+    }
 
     public void setEmail(String email){
         this.email = email;

@@ -11,7 +11,7 @@
                 <input type="submit"  value="<fmt:message key="reservas"/>"><br/>
             </form>
             
-            <form action="cadastroHotel.jsp" method="GET">
+            <form action="hotel/cadastroHotel.jsp" method="GET">
                 <input type="submit"  value="<fmt:message key="hotel"/>"><br/>
             </form>
             

@@ -1,19 +1,17 @@
-create database Livraria;
+create database Hoteis;
 
-use Livraria;
+use Hoteis;
 
-create table Editora(id bigint not null auto_increment, cnpj varchar(18) not null, nome varchar(256) not null, primary key (id));
+create table Hotel(cnpj varchar(18) not null, nome varchar(256) not null, cidade varchar(256) not null, email  varchar(256) not null, senha  varchar(256) not null, primary key (cnpj));
 
-create table Livro(id bigint not null auto_increment, titulo varchar(256) not null, autor varchar(256) not null, ano integer not null, preco float not null, editora_id bigint not null, primary key (id), foreign key (editora_id) references Editora(id));
 
-insert into Editora(cnpj, nome) values  ('55.789.390/0008-99', 'Companhia das Letras');
+insert into Hotel(cnpj, nome, cidade, email, senha) values  ('55.789.390/0008-99', 'Bir bir', 'Bor bor', "aaaaa@bbbb.cccc",'123456789');
 
-insert into Editora(cnpj, nome) values ('71.150.470/0001-40', 'Record');
+insert into Hotel(cnpj, nome, cidade, email, senha) values  ('55.789.390/0008-98', 'Bar bar', 'Bor bor', "aaaaa@bbbb.cccc",'123456789');
 
-insert into Editora(cnpj, nome) values ('32.106.536/0001-82', 'Objetiva');
+insert into Hotel(cnpj, nome, cidade, email, senha) values  ('55.789.390/0008-97', 'Ber ber', 'Bor bor', "aaaaa@bbbb.cccc",'123456789');
 
-insert into Livro(titulo, autor, ano, preco, editora_id) values ('Ensaio sobre a Cegueira', 'José Saramago', 1995, 54.9, 1);
+insert into Hotel(cnpj, nome, cidade, email, senha) values  ('55.789.390/0008-96', 'Bur bur', 'Bor bor', "aaaaa@bbbb.cccc",'123456789');
 
-insert into Livro(titulo, autor, ano, preco, editora_id) values  ('Cem anos de Solidão', 'Gabriel Garcia Márquez', 1977, 59.9, 2);
 
-insert into Livro(titulo, autor, ano, preco, editora_id) values ('Diálogos Impossíveis', 'Luis Fernando Verissimo', 2012, 22.9, 3);
+
