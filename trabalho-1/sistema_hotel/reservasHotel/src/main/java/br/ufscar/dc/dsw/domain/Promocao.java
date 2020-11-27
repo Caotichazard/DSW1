@@ -1,4 +1,4 @@
-package br.ufscar.dc.dsw.beans;
+package br.ufscar.dc.dsw.domain;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
