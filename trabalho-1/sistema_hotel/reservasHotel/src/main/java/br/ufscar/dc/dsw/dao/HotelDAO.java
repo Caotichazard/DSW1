@@ -72,7 +72,7 @@ public class HotelDAO extends GenericDAO {
         } catch (SQLException e) {
         }
     }
-    /*
+    
     public void update(Hotel hotel) {
         String sql = "UPDATE Hotel SET nome = ?, cidade = ?, email = ?, senha = ? WHERE cnpj = ?";
     
@@ -116,7 +116,7 @@ public class HotelDAO extends GenericDAO {
         }
         return hotel;
     }
-    
+    /*
     public Hotel getbyEmail(String email) {
         Hotel hotel = null;
         String sql = "SELECT * from Hotel WHERE email = ?";
@@ -140,6 +140,7 @@ public class HotelDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
         return hotel;
-    }*/
+    }
+    */
 }
 

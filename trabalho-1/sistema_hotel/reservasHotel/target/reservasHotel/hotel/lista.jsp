@@ -34,7 +34,11 @@
                     <td>
                         <a href="/<%= contextPath%>/hotels/remocao?cnpj=${hotel.CNPJ}"
 						onclick="return confirm('Tem certeza de que deseja excluir este item?');">
-							Remoção </a></td>
+                            Remoção </a>
+                    </td>
+                    <td>
+                        <a href="/<%= contextPath%>/hotels/edicao?cnpj=${hotel.CNPJ}">Edição</a>
+                    </td>
 				</tr>
 			</c:forEach>
 		</table>

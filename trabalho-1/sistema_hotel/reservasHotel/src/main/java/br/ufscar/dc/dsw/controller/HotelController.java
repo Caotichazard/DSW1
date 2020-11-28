@@ -50,14 +50,14 @@ public class HotelController extends HttpServlet {
                 case "/remocao":
                     remove(request, response);
                     break;
-                /*
-                //case "/edicao":
-                    //apresentaFormEdicao(request, response);
-                    //break;
+                
+                case "/edicao":
+                    apresentaFormEdicao(request, response);
+                    break;
                 case "/atualizacao":
                     atualize(request, response);
                     break;
-                    */
+            
                 default:
                     lista(request, response);
                     break;
@@ -78,16 +78,16 @@ public class HotelController extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/cadastroHotel.jsp");
         dispatcher.forward(request, response);
     }
-    /*
+    
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        Hotel hotel = dao.get(id);
+        String CNPJ = request.getParameter("cnpj");
+        Hotel hotel = dao.getbyCNPJ(CNPJ);
         request.setAttribute("hotel", hotel);
-        request.setAttribute("editoras", getEditoras());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/formulario.jsp");
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/edicaoHotel.jsp");
         dispatcher.forward(request, response);
     }
-    */
+    
     private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         
@@ -101,7 +101,7 @@ public class HotelController extends HttpServlet {
         dao.insert(hotel);
         response.sendRedirect("lista");
     }
-    /*
+    
     private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
@@ -115,7 +115,7 @@ public class HotelController extends HttpServlet {
         dao.update(hotel);
         response.sendRedirect("lista");
     }
-    */
+    
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String CNPJ = request.getParameter("cnpj");
 
