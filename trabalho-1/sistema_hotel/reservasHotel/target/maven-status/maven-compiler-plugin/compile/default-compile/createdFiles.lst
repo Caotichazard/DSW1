@@ -1,0 +1,7 @@
+br/ufscar/dc/dsw/dao/GenericDAO.class
+br/ufscar/dc/dsw/dao/HotelDAO.class
+br/ufscar/dc/dsw/controller/HotelController.class
+br/ufscar/dc/dsw/domain/Hotel.class
+br/ufscar/dc/dsw/domain/SiteReservas.class
+br/ufscar/dc/dsw/domain/Promocao.class
+br/ufscar/dc/dsw/util/Erro.class

@@ -26,7 +26,7 @@
 				<th>Cidade</th>
 				<th>Email</th>
 			</tr>
-			<c:forEach var="hotel" items="${requestScope.listaHoteis}">
+			<c:forEach var="hotel" items="${requestScope.listaHotels}">
 				<tr>
 					<td>${hotel.nome}</td>
 					<td>${hotel.cidade}</td>

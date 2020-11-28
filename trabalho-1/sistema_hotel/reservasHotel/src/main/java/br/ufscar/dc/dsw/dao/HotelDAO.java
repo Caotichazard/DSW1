@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import br.ufscar.dc.dsw.domain.Hotel;
 
 //alterar todos os argumentos para a estrutura do Hotel
@@ -33,7 +34,7 @@ public class HotelDAO extends GenericDAO {
     }
     
     public List<Hotel> getAll() {
-        //console.log("AAAAAAAAAAA");
+        
         List<Hotel> listaHotels = new ArrayList<>();
         String sql = "SELECT * FROM Hotel";
         try {
