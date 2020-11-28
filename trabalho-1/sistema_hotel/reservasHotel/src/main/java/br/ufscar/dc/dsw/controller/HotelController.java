@@ -82,7 +82,6 @@ public class HotelController extends HttpServlet {
     }
     */
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //request.setAttribute("editoras", getEditoras());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/cadastroHotel.jsp");
         dispatcher.forward(request, response);
     }

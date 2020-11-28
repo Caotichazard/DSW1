@@ -8,12 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufscar.dc.dsw.domain.SiteReserva;
+import br.ufscar.dc.dsw.domain.SiteReservas;
 
 //alterar todos os argumentos para a estrutura do SiteReserva
 public class SiteReservaDAO extends GenericDAO {
 
-    public void insert(SiteReserva site) {    
+    public void insert(SiteReservas site) {    
         String sql = "INSERT INTO SiteReserva(email, senha, url, nome, telefone) VALUES (?, ?, ?, ?, ?)";
         try {
             Connection conn = this.getConnection();
@@ -54,7 +54,7 @@ public class SiteReservaDAO extends GenericDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return listaSitess;
+        return listaSites;
     }
     
     public void delete(SiteReservas site) {
@@ -100,10 +100,10 @@ public class SiteReservaDAO extends GenericDAO {
             if (resultSet.next()) {
                 String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
-                String url = resultSet.getString("url");
+                String urlT = resultSet.getString("url");
                 String nome = resultSet.getString("nome");
                 String telefone = resultSet.getString("telefone");
-                site = new SiteReservas(email, senha, url, nome, telefone);
+                site = new SiteReservas(email, senha, urlT, nome, telefone);
             }
             resultSet.close();
             statement.close();
@@ -123,12 +123,12 @@ public class SiteReservaDAO extends GenericDAO {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-            	String email = resultSet.getString("email");
+            	String emailT = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
                 String url = resultSet.getString("url");
                 String nome = resultSet.getString("nome");
                 String telefone = resultSet.getString("telefone");
-                site = new SiteREservas(email, senha, url, nome, telefone);
+                site = new SiteReservas(emailT, senha, url, nome, telefone);
             }
             resultSet.close();
             statement.close();

@@ -14,7 +14,7 @@
 		<h1>Gerenciamento de Hoteis</h1>
 		<h2>
 			<a href="/<%=contextPath%>">Menu Principal</a> &nbsp;&nbsp;&nbsp; <a
-				href="/<%=contextPath%>/hotels/cadastro">Adicione Novo Livro</a>
+				href="/<%=contextPath%>/hotels/cadastro">Adicione Novo Hotel</a>
 		</h2>
 	</div>
 
