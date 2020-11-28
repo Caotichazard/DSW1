@@ -7,7 +7,7 @@
     </head>
     <body>
         <fmt:bundle basename="messages">
-            <form method="POST" action="insercao">
+            <form method="POST" >
                 <fieldset >
                     <legend><fmt:message key="cadastroHotel"/></legend>
                     <fmt:message key="email"/><input type="text" name="email" /><br/>

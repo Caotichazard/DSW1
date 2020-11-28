@@ -32,15 +32,16 @@ public class HotelDAO extends GenericDAO {
         }
     }
     
-    public List<Hotel> getAll() {   
+    public List<Hotel> getAll() {
+        //console.log("AAAAAAAAAAA");
         List<Hotel> listaHotels = new ArrayList<>();
-        String sql = "SELECT * from Hotel u";
+        String sql = "SELECT * FROM Hotel";
         try {
             Connection conn = this.getConnection();
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                String CNPJ = resultSet.getString("CNPJ");
+                String CNPJ = resultSet.getString("cnpj");
                 String nome = resultSet.getString("nome");
                 String cidade = resultSet.getString("cidade");
                 String email = resultSet.getString("email");
@@ -52,13 +53,14 @@ public class HotelDAO extends GenericDAO {
             statement.close();
             conn.close();
         } catch (SQLException e) {
+            System.out.print("AAAAAAA");
             throw new RuntimeException(e);
         }
         return listaHotels;
     }
-    
+    /*
     public void delete(Hotel hotel) {
-        String sql = "DELETE FROM Hotel where id = ?";
+        String sql = "DELETE FROM Hotel where cnpj = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -137,6 +139,6 @@ public class HotelDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
         return hotel;
-    }
+    }*/
 }
 

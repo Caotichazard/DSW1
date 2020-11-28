@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 //Alterar os argumentos para ficar correto em relação ao hotel
-@WebServlet(urlPatterns = "/hotel/*")
+@WebServlet(urlPatterns = "/hotels/*")
 public class HotelController extends HttpServlet {
 
     private static final long serialVersionUID = 1L; 
@@ -40,12 +40,13 @@ public class HotelController extends HttpServlet {
 
         try {
             switch (action) {
-                //case "/cadastro":
-                    //apresentaFormCadastro(request, response);
-                    //break;
+                case "/cadastro":
+                    apresentaFormCadastro(request, response);
+                    break;
                 case "/insercao":
                     insere(request, response);
                     break;
+                /*
                 case "/remocao":
                     remove(request, response);
                     break;
@@ -55,6 +56,7 @@ public class HotelController extends HttpServlet {
                 case "/atualizacao":
                     atualize(request, response);
                     break;
+                    */
                 default:
                     lista(request, response);
                     break;
@@ -78,13 +80,13 @@ public class HotelController extends HttpServlet {
         }
         return editoras;
     }
-    
+    */
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("editoras", getEditoras());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/formulario.jsp");
+        //request.setAttribute("editoras", getEditoras());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/cadastroHotel.jsp");
         dispatcher.forward(request, response);
     }
-
+    /*
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
         Hotel hotel = dao.get(id);
@@ -107,7 +109,7 @@ public class HotelController extends HttpServlet {
         dao.insert(hotel);
         response.sendRedirect("lista");
     }
-
+    /*
     private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
@@ -129,4 +131,5 @@ public class HotelController extends HttpServlet {
         dao.delete(hotel);
         response.sendRedirect("lista");
     }
+    */
 }
