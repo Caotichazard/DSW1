@@ -46,10 +46,11 @@ public class HotelController extends HttpServlet {
                 case "/insercao":
                     insere(request, response);
                     break;
-                /*
+                
                 case "/remocao":
                     remove(request, response);
                     break;
+                /*
                 //case "/edicao":
                     //apresentaFormEdicao(request, response);
                     //break;
@@ -72,15 +73,7 @@ public class HotelController extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/lista.jsp");
         dispatcher.forward(request, response);
     }
-    /*
-    private Map<Long, String> getEditoras() {
-        Map <Long,String> editoras = new HashMap<>();
-        for (Editora editora: new EditoraDAO().getAll()) {
-            editoras.put(editora.getId(), editora.getNome());
-        }
-        return editoras;
-    }
-    */
+    
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/cadastroHotel.jsp");
         dispatcher.forward(request, response);
@@ -122,7 +115,7 @@ public class HotelController extends HttpServlet {
         dao.update(hotel);
         response.sendRedirect("lista");
     }
-
+    */
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String CNPJ = request.getParameter("cnpj");
 
@@ -130,5 +123,5 @@ public class HotelController extends HttpServlet {
         dao.delete(hotel);
         response.sendRedirect("lista");
     }
-    */
+    
 }

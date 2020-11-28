@@ -59,7 +59,7 @@ public class HotelDAO extends GenericDAO {
         }
         return listaHotels;
     }
-    /*
+    
     public void delete(Hotel hotel) {
         String sql = "DELETE FROM Hotel where cnpj = ?";
         try {
@@ -72,7 +72,7 @@ public class HotelDAO extends GenericDAO {
         } catch (SQLException e) {
         }
     }
-    
+    /*
     public void update(Hotel hotel) {
         String sql = "UPDATE Hotel SET nome = ?, cidade = ?, email = ?, senha = ? WHERE cnpj = ?";
     

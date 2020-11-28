@@ -30,7 +30,11 @@
 				<tr>
 					<td>${hotel.nome}</td>
 					<td>${hotel.cidade}</td>
-					<td>${hotel.email}</td>
+                    <td>${hotel.email}</td>
+                    <td>
+                        <a href="/<%= contextPath%>/hotels/remocao?cnpj=${hotel.CNPJ}"
+						onclick="return confirm('Tem certeza de que deseja excluir este item?');">
+							Remoção </a></td>
 				</tr>
 			</c:forEach>
 		</table>
