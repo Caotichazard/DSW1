@@ -7,12 +7,12 @@
     </head>
     <body>
         <fmt:bundle basename="messages">
-            <form method="POST" action="storeSiteReservas.jsp">
+            <form method="POST" action="insercao">
                 <fieldset >
                     <legend><fmt:message key="cadastroSiteReservas"/></legend>
                     <fmt:message key="email"/><input type="text" name="email" /><br/>
                     <fmt:message key="senha"/><input type="text" name="senha" /><br/>
-                    <fmt:message key="nomeSiteReservas"/><input type="text" name="nomeSiteRervas" /><br/>
+                    <fmt:message key="nomeSiteReservas"/><input type="text" name="nome" /><br/>
                     <fmt:message key="url"/><input type="text" name="url" /><br/>
                     <fmt:message key="telefone"/><input type="text" name="telefone" /><br/>
                     <input type="submit" value="<fmt:message key="input"/>" />

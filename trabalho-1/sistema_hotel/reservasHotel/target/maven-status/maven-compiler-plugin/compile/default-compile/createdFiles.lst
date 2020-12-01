@@ -3,10 +3,10 @@ br/ufscar/dc/dsw/controller/HotelController.class
 br/ufscar/dc/dsw/domain/Hotel.class
 br/ufscar/dc/dsw/beans/Promocao.class
 br/ufscar/dc/dsw/domain/SiteReservas.class
-br/ufscar/dc/dsw/dao/GenericDAO.class
 br/ufscar/dc/dsw/beans/Hotel.class
+br/ufscar/dc/dsw/dao/GenericDAO.class
 br/ufscar/dc/dsw/dao/HotelDAO.class
 br/ufscar/dc/dsw/beans/SiteReservas.class
 br/ufscar/dc/dsw/dao/SiteReservasDAO.class
-br/ufscar/dc/dsw/util/Erro.class
 br/ufscar/dc/dsw/domain/Promocao.class
+br/ufscar/dc/dsw/util/Erro.class
