@@ -70,7 +70,7 @@ public class HotelController extends HttpServlet {
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Hotel> listaHotels = dao.getAll();
         request.setAttribute("listaHotels", listaHotels);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/lista.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/listaHotels.jsp");
         dispatcher.forward(request, response);
     }
     
@@ -99,7 +99,7 @@ public class HotelController extends HttpServlet {
 
         Hotel hotel = new Hotel(email, senha, CNPJ, nome, cidade);
         dao.insert(hotel);
-        response.sendRedirect("lista");
+        response.sendRedirect("listaHotel");
     }
     
     private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -113,7 +113,7 @@ public class HotelController extends HttpServlet {
 
         Hotel hotel = new Hotel(email, senha, CNPJ, nome, cidade);
         dao.update(hotel);
-        response.sendRedirect("lista");
+        response.sendRedirect("listaHotel");
     }
     
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -121,7 +121,7 @@ public class HotelController extends HttpServlet {
 
         Hotel hotel = new Hotel(CNPJ);
         dao.delete(hotel);
-        response.sendRedirect("lista");
+        response.sendRedirect("listaHotel");
     }
     
 }

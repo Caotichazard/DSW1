@@ -15,3 +15,6 @@ insert into Hotel(cnpj, nome, cidade, email, senha) values  ('55.789.390/0008-96
 
 
 
+create table Hoteis.SiteReservas(email varchar(256) not null, senha varchar(256) not null, url varchar(256) not null, nome varchar(256) not null, telefone varchar(256) not null, primary key(url));
+
+insert into Hoteis.SiteReservas(email, senha, url, nome, telefone) values  ('55.789.390/0008-99', 'aikasfikqa', 'qaiofaeoadso', "aaaaa@bbbb.cccc",'123456789');

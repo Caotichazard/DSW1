@@ -7,7 +7,7 @@
     </head>
     <body>
         <fmt:bundle basename="messages">
-            <form action="cadastroSiteReservas.jsp" method="GET">
+            <form action="sites" method="GET">
                 <input type="submit"  value="<fmt:message key="reservas"/>"><br/>
             </form>
             

@@ -16,7 +16,10 @@ public class SiteReservas{
         this.nome = nome;
         this.telefone = telefone;
     }
-
+    
+    public SiteReservas(String url){
+    	this.url = url;
+    }
     public void setEmail(String email){
         this.email = email;
     }
