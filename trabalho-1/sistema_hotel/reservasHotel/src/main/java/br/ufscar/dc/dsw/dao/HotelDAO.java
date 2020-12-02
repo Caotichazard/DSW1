@@ -122,14 +122,14 @@ public class HotelDAO extends GenericDAO {
     }
     
     public List<Hotel> getbyCidade(String cidade) {
-        List<Hotel> listaHotel = null;
+        List<Hotel> listaHotel = new ArrayList<>();
         String sql = "SELECT * from Hotel WHERE cidade = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, cidade);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
             	String nome = resultSet.getString("nome");
                 String cidadeT = resultSet.getString("cidade");
                 String email = resultSet.getString("email");
