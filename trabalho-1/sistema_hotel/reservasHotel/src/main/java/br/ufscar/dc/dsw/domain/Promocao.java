@@ -4,18 +4,41 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Promocao{
+
+    private Long id;
     private String CNPJhotel;
     private String urlSite;
     private String preco;
     private Date inicio, fim;
 
+    public Promocao(Long id){
+        this.id = id;
+    }
     public Promocao(String CNPJhotel, String urlSite, String preco, Date inicio, Date fim){
+        super();
         this.CNPJhotel = CNPJhotel;
         this.urlSite = urlSite;
         this.preco = preco;
         this.inicio = inicio;
         this.fim = fim;
     }
+
+    public Promocao(String CNPJhotel, String urlSite, String preco, Date inicio, Date fim, Long id){
+        super();
+        this.id = id;
+        this.CNPJhotel = CNPJhotel;
+        this.urlSite = urlSite;
+        this.preco = preco;
+        this.inicio = inicio;
+        this.fim = fim;
+    }
+
+    public Long getId() {
+		return id;
+	}	
+	public void setId(Long id) {
+		this.id = id;
+	}
 
     public void setCnpjhotel(String cnpjhotel){
         this.CNPJhotel = cnpjhotel;

@@ -63,7 +63,10 @@ public class HotelController extends HttpServlet {
                 case "/atualizacao":
                     atualize(request, response);
                     break;
-            
+                case "/cidade":
+                    cidade(request,response);
+                    break;
+                
                 default:
                     lista(request, response);
                     break;
@@ -75,6 +78,15 @@ public class HotelController extends HttpServlet {
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Hotel> listaHotels = dao.getAll();
+        List<String> listaCidades = dao.getCidades();
+        request.setAttribute("listaHotels", listaHotels);
+        request.setAttribute("listaCidades", listaCidades);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/listaHotels.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void cidade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String cidade = request.getParameter("cidade");
+        List<Hotel> listaHotels = dao.getbyCidade(cidade);
         request.setAttribute("listaHotels", listaHotels);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/listaHotels.jsp");
         dispatcher.forward(request, response);

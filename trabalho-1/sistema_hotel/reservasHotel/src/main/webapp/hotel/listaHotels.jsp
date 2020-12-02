@@ -17,6 +17,7 @@
 			
 				<c:if test = "${sessionScope.usuarioLogado.papel == 'ADMIN'}">
 					<a href="/<%=contextPath%>/hotels/cadastro">Adicione Novo Hotel</a>
+					<a href="/<%=contextPath%>/hotels/cadastro">Adicione Novo Hotel</a>
 				</c:if>
 			
 			</h2>
@@ -48,6 +49,15 @@
 						</c:if>
 					
 				</tr>
+			</c:forEach>
+			<tr>
+				<th>Cidades</th>
+			</tr>
+			<c:forEach var="cidade" items="${requestScope.listaCidades}">
+				<tr>
+					<td>${cidade}</td>
+				</tr>
+
 			</c:forEach>
 		</table>
 	</div>

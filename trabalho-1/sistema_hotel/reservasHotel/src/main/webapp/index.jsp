@@ -25,6 +25,11 @@
             <form action="logins" method="GET">
                 <input type="submit"  value="<fmt:message key="login"/>"><br/>
             </form>
+            <c:if test = "${sessionScope.usuarioLogado != null}">
+                <form action="logins" method="GET">
+                    <input type="submit"  value="<fmt:message key="login"/>"><br/>
+                </form>
+            </c:if>
         </fmt:bundle>
     </body>
 </html>

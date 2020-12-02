@@ -120,22 +120,23 @@ public class HotelDAO extends GenericDAO {
         }
         return hotel;
     }
-    /*
-    public Hotel getbyEmail(String email) {
-        Hotel hotel = null;
-        String sql = "SELECT * from Hotel WHERE email = ?";
+    
+    public List<Hotel> getbyCidade(String cidade) {
+        List<Hotel> listaHotel = null;
+        String sql = "SELECT * from Hotel WHERE cidade = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, email);
+            statement.setString(1, cidade);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
             	String nome = resultSet.getString("nome");
-                String cidade = resultSet.getString("cidade");
-                String emailT = resultSet.getString("email");
+                String cidadeT = resultSet.getString("cidade");
+                String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
                 String CNPJ = resultSet.getString("cnpj");
-                hotel = new Hotel(emailT, senha, CNPJ, nome, cidade);
+                Hotel hotel = new Hotel(email, senha, CNPJ, nome, cidadeT);
+                listaHotel.add(hotel);
             }
             resultSet.close();
             statement.close();
@@ -143,8 +144,29 @@ public class HotelDAO extends GenericDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return hotel;
+        return listaHotel;
     }
-    */
+
+    public List<String> getCidades(){
+        List<String> cidades = new ArrayList<>();
+        String sql = "SELECT DISTINCT cidade FROM Hotel";
+        try {
+            Connection conn = this.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String nomeCidade = resultSet.getString("cidade");
+                System.out.print(nomeCidade);
+                cidades.add(nomeCidade);
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cidades;
+    }
+    
 }
 
