@@ -18,3 +18,9 @@ insert into Hotel(cnpj, nome, cidade, email, senha) values  ('55.789.390/0008-96
 create table SiteReservas(email varchar(256) not null, senha varchar(256) not null, url varchar(256) not null, nome varchar(256) not null, telefone varchar(256) not null, primary key(url));
 
 insert into SiteReservas(email, senha, url, nome, telefone) values  ("aaaaa@bbbb.cccc", 'aikasfikqa', 'qaiofaeoadso.ccc', 'aikasfikqa','123456789');
+
+create table Usuario(id bigint not null auto_increment, nome varchar(256) not null, login varchar(20) not null unique, senha varchar(64) not null, papel varchar(10), primary key (id));
+
+insert into Usuario(nome, login, senha, papel) values ('Administrador', 'admin', 'admin', 'ADMIN');
+
+insert into Usuario(nome, login, senha, papel) values ('Usuario', 'user', 'user', 'USER');

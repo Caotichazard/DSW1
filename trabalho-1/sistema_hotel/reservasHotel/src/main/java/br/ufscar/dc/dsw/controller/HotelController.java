@@ -1,7 +1,6 @@
 package br.ufscar.dc.dsw.controller;
 
-import br.ufscar.dc.dsw.dao.HotelDAO;
-import br.ufscar.dc.dsw.domain.Hotel;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.ufscar.dc.dsw.dao.UsuarioDAO;
+import br.ufscar.dc.dsw.dao.HotelDAO;
+import br.ufscar.dc.dsw.domain.Hotel;
+import br.ufscar.dc.dsw.domain.Usuario;
 
 //Alterar os argumentos para ficar correto em relação ao hotel
 @WebServlet(urlPatterns = "/hotels/*")

@@ -13,8 +13,12 @@
 	<div align="center">
 		<h1>Gerenciamento de Sites de Reserva</h1>
 		<h2>
-			<a href="/<%=contextPath%>">Menu Principal</a> &nbsp;&nbsp;&nbsp; <a
-				href="/<%=contextPath%>/sites/cadastro">Adicione Novo Site</a>
+			<a href="/<%=contextPath%>">Menu Principal</a> &nbsp;&nbsp;&nbsp; 
+			
+			<c:if test = "${sessionScope.usuarioLogado.papel == 'ADMIN'}">
+				<a href="/<%=contextPath%>/sites/cadastro">Adicione Novo Site</a>
+			</c:if>
+			
 		</h2>
 	</div>
 
@@ -30,15 +34,19 @@
 				<tr>
 					<td>${site.url}</td>
 					<td>${site.nome}</td>
-                    <td>${site.email}</td>
-                    <td>
-                        <a href="/<%= contextPath%>/sites/remocao?url=${site.url}"
-						onclick="return confirm('Tem certeza de que deseja excluir este item?');">
-                            Remoção </a>
-                    </td>
-                    <td>
-                        <a href="/<%= contextPath%>/sites/edicao?url=${site.url}">Edição</a>
-                    </td>
+					<td>${site.email}</td>
+					
+						<c:if test = "${sessionScope.usuarioLogado.papel == 'ADMIN'}">
+							<td>
+								<a href="/<%= contextPath%>/sites/remocao?url=${site.url}"
+								onclick="return confirm('Tem certeza de que deseja excluir este item?');">
+									Remoção </a>
+							</td>
+							<td>
+								<a href="/<%= contextPath%>/sites/edicao?url=${site.url}">Edição</a>
+							</td>
+						</c:if>
+					
 				</tr>
 			</c:forEach>
 		</table>

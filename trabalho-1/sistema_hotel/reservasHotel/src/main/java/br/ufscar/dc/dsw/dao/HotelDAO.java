@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 import br.ufscar.dc.dsw.domain.Hotel;
+
 
 //alterar todos os argumentos para a estrutura do Hotel
 public class HotelDAO extends GenericDAO {
@@ -31,6 +33,8 @@ public class HotelDAO extends GenericDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        
     }
     
     public List<Hotel> getAll() {
@@ -54,7 +58,7 @@ public class HotelDAO extends GenericDAO {
             statement.close();
             conn.close();
         } catch (SQLException e) {
-            System.out.print("AAAAAAA");
+            
             throw new RuntimeException(e);
         }
         return listaHotels;
