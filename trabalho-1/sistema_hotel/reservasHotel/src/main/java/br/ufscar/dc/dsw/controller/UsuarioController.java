@@ -90,7 +90,7 @@ public class UsuarioController extends HttpServlet {
 				erros.add("Usuário não encontrado!");
 			}
 		}
-		System.out.print("AAAAAAA");
+		
 		request.getSession().invalidate();
 		request.setAttribute("mensagens", erros);
 		String URL = "/login/login.jsp";

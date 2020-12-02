@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.dao.UsuarioDAO;
+
 
 //Alterar os argumentos para ficar correto em relação ao Site
 @WebServlet(urlPatterns = "/sites/*")
@@ -20,10 +23,12 @@ public class SiteReservasController extends HttpServlet {
 
     private static final long serialVersionUID = 1L; 
     private SiteReservasDAO dao;
+    private UsuarioDAO userDao;
 
     @Override
     public void init() {
         dao = new SiteReservasDAO();
+        userDao = new UsuarioDAO();
     }
 
     @Override
@@ -99,6 +104,11 @@ public class SiteReservasController extends HttpServlet {
 
         SiteReservas site = new SiteReservas(email, senha, url, nome, telefone);
         dao.insert(site);
+
+        String papel = "SITE";
+
+        Usuario user = new Usuario(nome, email, senha, papel);
+        userDao.insert(user);
         response.sendRedirect("listaSiteReservas");
     }
     

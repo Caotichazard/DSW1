@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.ufscar.dc.dsw.dao.UsuarioDAO;
+
 import br.ufscar.dc.dsw.dao.HotelDAO;
 import br.ufscar.dc.dsw.domain.Hotel;
 import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.dao.UsuarioDAO;
 
 //Alterar os argumentos para ficar correto em relação ao hotel
 @WebServlet(urlPatterns = "/hotels/*")
@@ -23,10 +24,12 @@ public class HotelController extends HttpServlet {
 
     private static final long serialVersionUID = 1L; 
     private HotelDAO dao;
+    private UsuarioDAO userDao;
 
     @Override
     public void init() {
         dao = new HotelDAO();
+        userDao = new UsuarioDAO();
     }
 
     @Override
@@ -102,6 +105,16 @@ public class HotelController extends HttpServlet {
 
         Hotel hotel = new Hotel(email, senha, CNPJ, nome, cidade);
         dao.insert(hotel);
+
+        String papel = "HOTEL";
+
+        Usuario user = new Usuario(nome, email, senha, papel);
+        if(user == null){
+            System.out.print("AAAAAAA");
+        }
+        System.out.print("BBBBBB");
+        userDao.insert(user);
+
         response.sendRedirect("listaHotel");
     }
     
