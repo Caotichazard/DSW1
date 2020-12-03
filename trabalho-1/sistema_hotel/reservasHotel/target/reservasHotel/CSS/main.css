@@ -1,0 +1,38 @@
+
+body {
+    background-color: bisque;
+    /* padding: 2; */
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 15%;
+    margin-bottom: 15%;
+    border: 1px solid black;
+    border-radius: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+form {
+    margin-top: 50%;
+    margin-bottom: 50%;
+}
+input{
+    padding: 1rem;
+    border-radius: 0.8rem;
+    background-color: #ffbb6a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: background 0.2s;
+}
+input:hover{
+    background-color: #b8860b;
+}
+
+
+
+
+
+
