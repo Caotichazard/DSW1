@@ -121,10 +121,7 @@ public class HotelController extends HttpServlet {
         String papel = "HOTEL";
 
         Usuario user = new Usuario(nome, email, senha, papel);
-        if(user == null){
-            System.out.print("AAAAAAA");
-        }
-        System.out.print("BBBBBB");
+       
         userDao.insert(user);
 
         response.sendRedirect("listaHotel");

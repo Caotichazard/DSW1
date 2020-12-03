@@ -15,8 +15,8 @@
 		<h2>
 			<a href="/<%=contextPath%>">Menu Principal</a> &nbsp;&nbsp;&nbsp;
 			
-				<c:if test = "${sessionScope.usuarioLogado.papel == 'ADMIN'}">
-					<a href="/<%=contextPath%>/hotels/promocoes/criacao">Adicione Novo Hotel</a>
+				<c:if test = "${sessionScope.usuarioLogado.papel == 'ADMIN' || sessionScope.usuarioLogado.papel == 'HOTEL'}">
+					<a href="/<%=contextPath%>/hotels/promocoes/cadastro">Adicione Nova Promocao</a>
 				</c:if>
 			
 			</h2>
@@ -31,7 +31,7 @@
 				<th>Fim</th>
 				<th>Preco</th>
 			</tr>
-			<c:forEach var="promocao" items="${requestScope.listaPromocoes}">
+			<c:forEach var="promocao" items="${requestScope.listaPromocaos}">
 				<tr>
                     <td>${promocao.urlSite}</td>
 					<td>${promocao.inicio}</td>

@@ -138,4 +138,26 @@ public class SiteReservasDAO extends GenericDAO {
         }
         return site;
     }
+
+    public List<String> getAllUrls(){
+        List<String> listaSites = new ArrayList<>();
+        String sql = "SELECT DISTINCT url FROM SiteReservas";
+        try {
+            Connection conn = this.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                
+                String url = resultSet.getString("url");
+                
+                listaSites.add(url);
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaSites;
+    }
 }

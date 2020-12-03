@@ -17,7 +17,10 @@
 			
 				<c:if test = "${sessionScope.usuarioLogado.papel == 'ADMIN'}">
 					<a href="/<%=contextPath%>/hotels/cadastro">Adicione Novo Hotel</a>
-					<a href="/<%=contextPath%>/hotels/cadastro">Adicione Novo Hotel</a>
+					<a href="/<%=contextPath%>/hotels/promocoes">Veja as promocoes</a>
+				</c:if>
+				<c:if test = "${sessionScope.usuarioLogado.papel == 'HOTEL'}">
+					<a href="/<%=contextPath%>/hotels/promocoes">Veja as promocoes</a>
 				</c:if>
 			
 			</h2>

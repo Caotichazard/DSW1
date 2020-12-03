@@ -120,6 +120,31 @@ public class HotelDAO extends GenericDAO {
         }
         return hotel;
     }
+
+    public Hotel getByEmail(String email) {
+        Hotel hotel = null;
+        String sql = "SELECT * from Hotel WHERE email = ?";
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()) {
+                String nome = resultSet.getString("nome");
+                String cidade = resultSet.getString("cidade");
+                //String email = resultSet.getString("email");
+                String senha = resultSet.getString("senha");
+                String CNPJ = resultSet.getString("cnpj");
+                hotel = new Hotel(email, senha, CNPJ, nome, cidade);
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return hotel;
+    }
     
     public List<Hotel> getbyCidade(String cidade) {
         List<Hotel> listaHotel = new ArrayList<>();
@@ -156,7 +181,6 @@ public class HotelDAO extends GenericDAO {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 String nomeCidade = resultSet.getString("cidade");
-                System.out.print(nomeCidade);
                 cidades.add(nomeCidade);
             }
             resultSet.close();

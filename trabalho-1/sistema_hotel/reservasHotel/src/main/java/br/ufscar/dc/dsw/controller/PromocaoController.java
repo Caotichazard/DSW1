@@ -1,4 +1,4 @@
-/*
+
 package br.ufscar.dc.dsw.controller;
 
 
@@ -14,22 +14,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+import br.ufscar.dc.dsw.dao.PromocaoDAO;
+import br.ufscar.dc.dsw.domain.Promocao;
+
+import br.ufscar.dc.dsw.dao.SiteReservasDAO;
+import br.ufscar.dc.dsw.domain.SiteReservas;
+
 import br.ufscar.dc.dsw.dao.HotelDAO;
 import br.ufscar.dc.dsw.domain.Hotel;
+
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.dao.UsuarioDAO;
 
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+
+
 //Alterar os argumentos para ficar correto em relação ao hotel
-@WebServlet(urlPatterns = "/hotels/promocoes/*")
-public class HotelController extends HttpServlet {
+@WebServlet(urlPatterns = {"/hotels/promocoes/*","/sites/promocoes/*"})
+public class PromocaoController extends HttpServlet {
 
     private static final long serialVersionUID = 1L; 
-    private HotelDAO dao;
+    private PromocaoDAO dao;
+    private SiteReservasDAO sitesDao;
+    private HotelDAO hotelDao;
     
 
     @Override
     public void init() {
-        dao = new HotelDAO();
+        dao = new PromocaoDAO();
+        sitesDao = new SiteReservasDAO();
+        hotelDao = new HotelDAO();
     }
 
     @Override
@@ -63,9 +78,7 @@ public class HotelController extends HttpServlet {
                 case "/atualizacao":
                     atualize(request, response);
                     break;
-                case "/cidade":
-                    cidade(request,response);
-                    break;
+                
                     
                 default:
                     lista(request, response);
@@ -77,78 +90,83 @@ public class HotelController extends HttpServlet {
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Hotel> listaHotels = dao.getAll();
-        request.setAttribute("listaHotels", listaHotels);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/listaHotels.jsp");
+        Usuario user = (Usuario) request.getSession().getAttribute("usuarioLogado");
+        
+        System.out.print(request.getServletPath());
+        if(request.getServletPath().contains("hotels")){
+            Hotel tempHotel = hotelDao.getByEmail(user.getLogin());
+            String hotelCNPJ = tempHotel.getCNPJ();
+            List<Promocao> listaPromocaos = dao.getAllbyHotel(hotelCNPJ);
+            request.setAttribute("listaPromocaos", listaPromocaos);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/promocao/listaPromocoes.jsp");
+        }
+        //System.out.print(hotelCNPJ);
+        
+        
         dispatcher.forward(request, response);
     }
-    private void cidade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String cidade = request.getParameter("cidade");
-        List<Hotel> listaHotels = dao.getbyCidade(cidade);
-        request.setAttribute("listaHotels", listaHotels);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/listaHotels.jsp");
-        dispatcher.forward(request, response);
-    }
+   
     
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/cadastroHotel.jsp");
+        List<String> listaSites = sitesDao.getAllUrls();
+        //System.out.print(listaSites);
+        request.setAttribute("listaSiteReserva",listaSites);
+        //Hotel hotel = hotelDao.getByEmail(request.getSession().getAttribute("usuarioLogado.login"));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/promocao/cadastroPromocao.jsp");
         dispatcher.forward(request, response);
     }
     
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String CNPJ = request.getParameter("cnpj");
-        Hotel hotel = dao.getbyCNPJ(CNPJ);
-        request.setAttribute("hotel", hotel);
+        String ID = request.getParameter("id");
+        Promocao promocao = dao.getbyID(Long.parseLong(ID));
+        request.setAttribute("promocao", promocao);
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/edicaoHotel.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/promocao/edicaoPromocao.jsp");
         dispatcher.forward(request, response);
     }
     
     private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         
-        String nome = request.getParameter("nome");
-        String cidade = request.getParameter("cidade");
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
-        String CNPJ = request.getParameter("cnpj");
+        String url = request.getParameter("siteReserva");
+        String hotel = request.getParameter("hotel");
+        Hotel tempHotel = hotelDao.getByEmail(hotel);
+        String hotelCNPJ = tempHotel.getCNPJ();
+        System.out.print(hotelCNPJ);
+        String preco = request.getParameter("preco");
+        String inicio = request.getParameter("inicio");
+        String fim = request.getParameter("fim");
+        
+        
+        Promocao promocao = new Promocao(url, hotelCNPJ, preco, LocalDate.parse(inicio,DateTimeFormatter.ISO_LOCAL_DATE), LocalDate.parse(fim,DateTimeFormatter.ISO_LOCAL_DATE));
+        dao.insert(promocao);
 
-        Hotel hotel = new Hotel(email, senha, CNPJ, nome, cidade);
-        dao.insert(hotel);
+       
 
-        String papel = "HOTEL";
-
-        Usuario user = new Usuario(nome, email, senha, papel);
-        if(user == null){
-            System.out.print("AAAAAAA");
-        }
-        System.out.print("BBBBBB");
-        userDao.insert(user);
-
-        response.sendRedirect("listaHotel");
+        response.sendRedirect("listaPromocao");
     }
     
     private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-        String nome = request.getParameter("nome");
-        String cidade = request.getParameter("cidade");
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
-        String CNPJ = request.getParameter("cnpj");
-
-        Hotel hotel = new Hotel(email, senha, CNPJ, nome, cidade);
-        dao.update(hotel);
-        response.sendRedirect("listaHotel");
+        String url = request.getParameter("url");
+        String hotel = request.getParameter("hotel");
+        String preco = request.getParameter("preco");
+        String inicio = request.getParameter("inicio");
+        String fim = request.getParameter("fim");
+        
+        
+        Promocao promocao = new Promocao(url, hotel, preco, LocalDate.parse(inicio,DateTimeFormatter.BASIC_ISO_DATE), LocalDate.parse(fim,DateTimeFormatter.BASIC_ISO_DATE));
+        dao.update(promocao);
+        response.sendRedirect("listaPromocao");
     }
     
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String CNPJ = request.getParameter("cnpj");
+        String ID = request.getParameter("id");
 
-        Hotel hotel = new Hotel(CNPJ);
-        dao.delete(hotel);
-        response.sendRedirect("listaHotel");
+        Promocao promocao = new Promocao(Long.parseLong(ID));
+        dao.delete(promocao);
+        response.sendRedirect("listaPromocao");
     }
     
 }
-*/

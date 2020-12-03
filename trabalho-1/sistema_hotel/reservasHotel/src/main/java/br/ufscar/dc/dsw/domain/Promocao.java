@@ -1,7 +1,7 @@
 package br.ufscar.dc.dsw.domain;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Promocao{
 
@@ -9,12 +9,12 @@ public class Promocao{
     private String CNPJhotel;
     private String urlSite;
     private String preco;
-    private Date inicio, fim;
+    private LocalDate inicio, fim;
 
     public Promocao(Long id){
         this.id = id;
     }
-    public Promocao(String CNPJhotel, String urlSite, String preco, Date inicio, Date fim){
+    public Promocao(String urlSite, String CNPJhotel, String preco, LocalDate inicio, LocalDate fim){
         super();
         this.CNPJhotel = CNPJhotel;
         this.urlSite = urlSite;
@@ -23,7 +23,7 @@ public class Promocao{
         this.fim = fim;
     }
 
-    public Promocao(String CNPJhotel, String urlSite, String preco, Date inicio, Date fim, Long id){
+    public Promocao(String urlSite, String CNPJhotel, String preco, LocalDate inicio, LocalDate fim, Long id){
         super();
         this.id = id;
         this.CNPJhotel = CNPJhotel;
@@ -64,19 +64,19 @@ public class Promocao{
         return this.preco;
     }
 
-    public void setInicio(Date inicio){
+    public void setInicio(LocalDate inicio){
         this.inicio = inicio;
     }
 
-    public Date getInicio(){
+    public LocalDate getInicio(){
         return this.inicio;
     }
 
-    public void setFim(Date fim){
+    public void setFim(LocalDate fim){
         this.fim = fim;
     }
 
-    public Date getFim(){
+    public LocalDate getFim(){
         return this.fim;
     }
 }
