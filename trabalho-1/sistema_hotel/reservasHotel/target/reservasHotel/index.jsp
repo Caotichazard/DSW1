@@ -15,6 +15,7 @@
             <c:out value="${sessionScope.usuarioLogado.papel}" />
             </h1>
         </c:if>
+        
         <fmt:bundle basename="messages">
             <form action="sites" method="GET">
                 <input type="submit"  value="<fmt:message key="reservas"/>"><br/>
@@ -32,5 +33,6 @@
                 </form>
             </c:if>
         </fmt:bundle>
+    
     </body>
 </html>
