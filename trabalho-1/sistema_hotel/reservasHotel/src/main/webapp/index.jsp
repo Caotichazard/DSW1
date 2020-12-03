@@ -7,6 +7,7 @@
 <html>
     <head>
         <title>Login page</title>
+        <link rel="stylesheet" href="CSS/main.css">
     </head>
     <body>
         <c:if test = "${sessionScope.usuarioLogado != null}">

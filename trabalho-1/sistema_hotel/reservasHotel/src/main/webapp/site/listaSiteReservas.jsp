@@ -3,9 +3,10 @@
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
-<head>
-<title>Sites de Reserva</title>
-</head>
+	<head>
+		<title>Sites de Reserva</title>
+		<link rel="stylesheet" href="/CSS/main.css">
+	</head>
 <body>
 	<%
 		String contextPath = request.getContextPath().replace("/", "");

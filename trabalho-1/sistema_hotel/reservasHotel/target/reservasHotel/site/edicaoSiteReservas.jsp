@@ -6,6 +6,7 @@
 <html>
     <head>
         <title>Login page</title>
+        <link rel="stylesheet" href="/CSS/main.css">
     </head>
     <body>
         <fmt:bundle basename="messages">
