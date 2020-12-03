@@ -22,7 +22,7 @@
                 </ul>
             </div>
         </c:if>
-        <form method="post" action="logins/entry">
+        <form method="post" action="/<%=contextPath%>/logins/entry">
             <table>
                 <tr>
                     <th>Login: </th>
