@@ -16,7 +16,7 @@
 	<div align="center">
 		<h1><fmt:message key="GereHotel"/></h1>
 		<h2>
-			<a href="/<%=contextPath%>"><fmt:message key="MenuPrincipal"/>Menu Principal</a> &nbsp;&nbsp;&nbsp;
+			<a href="/<%=contextPath%>"><fmt:message key="MenuPrincipal"/></a> &nbsp;&nbsp;&nbsp;
 		</h2>
 	</div>
 
