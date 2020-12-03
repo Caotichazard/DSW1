@@ -87,6 +87,8 @@ public class HotelController extends HttpServlet {
     private void cidade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String cidade = request.getParameter("cidade");
         List<Hotel> listaHotels = dao.getbyCidade(cidade);
+        List<String> listaCidades = dao.getCidades();
+        request.setAttribute("listaCidades", listaCidades);
         request.setAttribute("listaHotels", listaHotels);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/listaHotels.jsp");
         dispatcher.forward(request, response);

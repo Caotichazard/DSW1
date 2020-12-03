@@ -156,11 +156,11 @@ public class HotelDAO extends GenericDAO {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
             	String nome = resultSet.getString("nome");
-                String cidadeT = resultSet.getString("cidade");
+                //String cidadeT = resultSet.getString("cidade");
                 String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
                 String CNPJ = resultSet.getString("cnpj");
-                Hotel hotel = new Hotel(email, senha, CNPJ, nome, cidadeT);
+                Hotel hotel = new Hotel(email, senha, CNPJ, nome, cidade);
                 listaHotel.add(hotel);
             }
             resultSet.close();

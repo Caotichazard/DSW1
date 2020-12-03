@@ -53,16 +53,15 @@
 					
 				</tr>
 			</c:forEach>
-			<tr>
-				<th>Cidades</th>
-			</tr>
-			<c:forEach var="cidade" items="${requestScope.listaCidades}">
-				<tr>
-					<td>${cidade}</td>
-				</tr>
-
-			</c:forEach>
 		</table>
+		<form method = "POST" action="/<%=contextPath%>/hotels/cidade" id = "cidades">
+			<select name="cidade" id="cidade" form= "cidades">
+				<c:forEach var="cidad" items="${requestScope.listaCidades}">
+					<option value='${cidad}'>${cidad}</option>
+				</c:forEach>
+			</select>
+			<input type="submit" value="Submit">
+		</form>
 	</div>
 </body>
 </html>
