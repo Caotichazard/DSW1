@@ -24,4 +24,4 @@ create table Usuario(id bigint not null auto_increment, nome varchar(256) not nu
 insert into Usuario(nome, login, senha, papel) values ('Administrador', 'admin', 'admin', 'ADMIN');
 
 
-create table Promocoes(id bigint not null auto_increment, url varchar(256) not null, hotel varchar(256) not null, preco varchar(256), inicio date, fim date, primary key(id));
+create table Promocoes(id bigint not null auto_increment, url varchar(256) not null, hotel varchar(256) not null, preco varchar(256), inicio date unique, fim date unique, primary key(id));

@@ -99,11 +99,20 @@ public class PromocaoController extends HttpServlet {
             List<Promocao> listaPromocaos = dao.getAllbyHotel(hotelCNPJ);
             request.setAttribute("listaPromocaos", listaPromocaos);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/hotel/promocao/listaPromocoes.jsp");
+            dispatcher.forward(request, response);
+        }
+        if(request.getServletPath().contains("sites")){
+            SiteReservas tempSite = sitesDao.getbyEmail(user.getLogin());
+            String siteURL = tempSite.getUrl();
+            List<Promocao> listaPromocaos = dao.getAllbySite(siteURL);
+            request.setAttribute("listaPromocaos", listaPromocaos);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/site/promocao/listaPromocoes.jsp");
+            dispatcher.forward(request, response);
         }
         //System.out.print(hotelCNPJ);
         
         
-        dispatcher.forward(request, response);
+        //dispatcher.forward(request, response);
     }
    
     
