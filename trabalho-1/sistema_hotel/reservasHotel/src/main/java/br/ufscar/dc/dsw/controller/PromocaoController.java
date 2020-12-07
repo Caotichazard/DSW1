@@ -135,24 +135,71 @@ public class PromocaoController extends HttpServlet {
     }
     
     private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         request.setCharacterEncoding("UTF-8");
+
         
+
         String url = request.getParameter("siteReserva");
+
         String hotel = request.getParameter("hotel");
+
         Hotel tempHotel = hotelDao.getByEmail(hotel);
+
         String hotelCNPJ = tempHotel.getCNPJ();
+
         System.out.print(hotelCNPJ);
+
         String preco = request.getParameter("preco");
+
         String inicio = request.getParameter("inicio");
+
         String fim = request.getParameter("fim");
-        
-        
-        Promocao promocao = new Promocao(url, hotelCNPJ, preco, LocalDate.parse(inicio,DateTimeFormatter.ISO_LOCAL_DATE), LocalDate.parse(fim,DateTimeFormatter.ISO_LOCAL_DATE));
-        dao.insert(promocao);
 
-       
+        List<Promocao> listaPromocaos = dao.getAllbyHotel(hotelCNPJ);
 
-        response.sendRedirect("listaPromocao");
+        String URL_;
+
+        LocalDate INI_;
+
+        LocalDate FIM_;
+
+        int flag = 0;
+
+        for( Promocao promo : listaPromocaos){
+
+            URL_ = promo.getUrlSite();
+
+            INI_ = promo.getInicio();
+
+            FIM_ = promo.getFim();
+
+            if(URL_.equals(url) && INI_.equals(LocalDate.parse(inicio,DateTimeFormatter.ISO_LOCAL_DATE)) && FIM_.equals(LocalDate.parse(fim,DateTimeFormatter.ISO_LOCAL_DATE))){
+
+                flag += 1;
+
+            }
+
+        }
+
+        if(flag == 0){
+
+            Promocao promocao = new Promocao(url, hotelCNPJ, preco, LocalDate.parse(inicio,DateTimeFormatter.ISO_LOCAL_DATE), LocalDate.parse(fim,DateTimeFormatter.ISO_LOCAL_DATE));
+
+            dao.insert(promocao);
+
+            response.sendRedirect("listaPromocao");
+
+        }
+
+        else{
+
+            response.sendRedirect("listaPromocao");
+
+        }
+
+    
+
     }
     
     private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
