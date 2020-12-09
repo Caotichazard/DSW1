@@ -21,7 +21,7 @@ Banco de dados com sql{(Modulo 4 e 5)
 
 Duvidas até agr{
     Tem q usar AJAX?(modulo 5-3)(lendo o arquivo de requisitos parece não precisar)
-    R7: não criar promoção mesma data site hotel, o que quer dizer?
+    R7: não criar promoção mesma data site hotel, o que quer dizer?(trocar o bd de date pra string e count)
 }
 
 Comenta o codigo maluco
