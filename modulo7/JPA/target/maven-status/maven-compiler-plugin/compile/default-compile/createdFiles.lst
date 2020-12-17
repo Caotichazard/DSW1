@@ -1,0 +1,10 @@
+br/ufscar/dc/dsw/dao/GenericDAO.class
+br/ufscar/dc/dsw/dao/HotelDAO.class
+br/ufscar/dc/dsw/dao/PromocaoDAO.class
+br/ufscar/dc/dsw/domain/Usuario.class
+br/ufscar/dc/dsw/App.class
+br/ufscar/dc/dsw/domain/Hotel.class
+br/ufscar/dc/dsw/dao/SiteReservasDAO.class
+br/ufscar/dc/dsw/dao/UsuarioDAO.class
+br/ufscar/dc/dsw/domain/SiteReservas.class
+br/ufscar/dc/dsw/domain/Promocao.class
