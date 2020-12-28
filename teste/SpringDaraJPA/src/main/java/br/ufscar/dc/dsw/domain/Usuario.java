@@ -20,10 +20,10 @@ public abstract class Usuario {
     @Column(nullable = false, unique = true, length = 60)
 	private String login;
 
-    @Column(nullable = false, unique = true, length = 60)
+    @Column(nullable = false, length = 60)
 	private String senha;
 
-    @Column(nullable = false, unique = true, length = 60)
+    @Column(nullable = false, length = 60)
 	private String papel;
 
 

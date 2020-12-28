@@ -2,10 +2,14 @@ package br.ufscar.dc.dsw.domain;
 
 import java.util.Set;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "SiteReservas")
@@ -19,6 +23,10 @@ public class SiteReservas extends Usuario {
 
     @Column(nullable = false, length = 260)
     private String telefone;
+
+    @OneToMany(mappedBy = "site")
+    private List<Promocao> promocoes;
+
 
     public SiteReservas(){
 
@@ -61,5 +69,15 @@ public class SiteReservas extends Usuario {
     
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    
+    public List<Promocao> getPromocoes() {
+        return promocoes;
+    }
+
+    
+    public void setPromocoes(List<Promocao> promocoes) {
+        this.promocoes = promocoes;
     }
 }

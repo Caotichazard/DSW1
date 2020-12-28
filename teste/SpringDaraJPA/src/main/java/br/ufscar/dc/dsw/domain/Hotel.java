@@ -2,9 +2,11 @@ package br.ufscar.dc.dsw.domain;
 
 import java.util.Set;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +21,9 @@ public class Hotel extends Usuario {
 
     @Column(nullable = false, length = 260)
     private String cidade;
+
+    @OneToMany(mappedBy = "hotel")
+    private List<Promocao> promocoes;
 
     public Hotel(){
 
@@ -57,5 +62,15 @@ public class Hotel extends Usuario {
     
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    
+    public List<Promocao> getPromocoes() {
+        return promocoes;
+    }
+
+    
+    public void setPromocoes(List<Promocao> promocoes) {
+        this.promocoes = promocoes;
     }
 }
