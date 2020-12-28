@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "Promocao")
@@ -16,8 +18,7 @@ public class Promocao {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false, length = 60)
-    private String url;
+	
     
 	@ManyToOne
 	@JoinColumn(name = "hotel_id") 
@@ -25,7 +26,10 @@ public class Promocao {
     
 	@ManyToOne
 	@JoinColumn(name = "siteReservas_id") 
-	private Long siteReservas;
+	private Long url;
+
+	@Column(nullable = false, length = 60)
+	private String preco;
     
     @Column(nullable = false, length = 60)
 	private String inicio;
@@ -36,7 +40,7 @@ public class Promocao {
 	public Promocao(){
 
     }
-	public Promocao(String url, String hotel,String preco ,String inicio, String fim) {
+	public Promocao(Long url, Long hotel,String preco ,String inicio, String fim) {
         this.url = url;
         this.hotel = hotel;
         this.preco = preco;
@@ -46,17 +50,17 @@ public class Promocao {
 
 	
 
-	public String getUrl() {
+	public Long getUrl() {
 		return url;
 	}
-	public void setUrl(String url) {
+	public void setUrl(Long url) {
 		this.url = url;
     }
 
-    public String getHotel() {
+    public Long getHotel() {
 		return hotel;
 	}
-	public void setHotel(String hotel) {
+	public void setHotel(Long hotel) {
 		this.hotel = hotel;
     }
 

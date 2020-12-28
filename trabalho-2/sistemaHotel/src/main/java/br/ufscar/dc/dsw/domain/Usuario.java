@@ -13,77 +13,68 @@ import javax.persistence.Table;
 @Table(name = "Usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario {
-	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(nullable = false, unique = true, length = 60)
-    private String nome;
-    
-    @Column(nullable = false, length = 60)
-    private String login;
-    
+
     @Column(nullable = false, unique = true, length = 60)
-    private String senha;
-    
-    @Column(nullable = false, length = 60)
+	private String login;
+
+    @Column(nullable = false, unique = true, length = 60)
+	private String senha;
+
+    @Column(nullable = false, unique = true, length = 60)
 	private String papel;
 
-    
-    
-	public Usuario(){
+
+
+    public Usuario(){
 
     }
-	
-    
-    public Usuario(String login, String nome,String papel, String senha) {
-        
-        this.nome = nome;
+
+    public Usuario(String login, String senha, String papel){
         this.login = login;
-        this.papel = papel;
         this.senha = senha;
-	}
-
-	
-
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
+        this.papel = papel;
     }
 
-    public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
+    public Usuario(Long id,String login, String senha, String papel){
+        this.id = id;
+        this.login = login;
+        this.senha = senha;
+        this.papel = papel;
+    }
+ 
+    void setId(Long id){
+        this.id = id;
+    }
+    Long getId(){
+        return this.id;
     }
 
-    public String getPapel() {
-		return papel;
-	}
-	public void setPapel(String papel) {
-		this.papel = papel;
+    void setLogin(String login){
+        this.login = login;
+    }
+    String getLogin(){
+        return this.login;
     }
 
-    public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
+    void setSenha(String senha){
+        this.senha = senha;
+    }
+    String getSenha(){
+        return this.senha;
     }
 
-    public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+    void setPapel(String papel){
+        this.papel = papel;
     }
-    
+    String getPapel(){
+        return this.papel;
+    }
 
-	@Override
+    @Override
 	public String toString() {
-		return "Usuario [Nome=" + nome + "Papel=" + papel + "Id=" + id + "]";
+		return "Usuario [Login= " + login + " Papel= " + papel +"]";
 	}
 }

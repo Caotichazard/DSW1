@@ -1,71 +1,61 @@
 package br.ufscar.dc.dsw.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.List;
 
 @Entity
 @Table(name = "Hotel")
 public class Hotel extends Usuario {
-	
-	@Column(nullable = false, unique=true,length = 18)
-	private String cnpj;
-	
 
-    
-    @Column(nullable = false, length = 60)
-	private String cidade;
-	
-	@OneToMany(mappedBy = "hotel")
-	private List<Promocao> promocoes;
-    
-   
+    @Column(nullable = false, unique = true, length = 25)
+    private String CNPJ;
 
-	public Hotel(){
+    @Column(nullable = false, length = 260)
+    private String nome;
+
+    @Column(nullable = false, length = 260)
+    private String cidade;
+
+    public Hotel(){
 
     }
-	public Hotel(String cnpj, String nome,String cidade ,String email, String senha) {
-		super(nome,email,"HOTEL",senha); 
-        this.cnpj = cnpj;
+
+    public Hotel(String email, String senha, String CNPJ, String nome, String cidade){
+        super(email, senha, "HOTEL");
+        this.CNPJ = CNPJ;
         this.cidade = cidade;
-        
-	}
-
-	
-
-
-    public String getCnpj() {
-		return cnpj;
-	}
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
+        this.nome = nome;
     }
 
+    
+    public String getCNPJ() {
+        return CNPJ;
+    }
+    
+    public void setCNPJ(String cNPJ) {
+        CNPJ = cNPJ;
+    }
+
+    
     public String getCidade() {
-		return cidade;
-	}
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-	
-	public List<Promocao> getPromocoes(){
-        return promocoes;
+        return cidade;
+    }
+    
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
-    public void setPromocoes(List<Promocao> promocoes){
-        this.promocoes = promocoes;
+    
+    public String getNome() {
+        return nome;
     }
 
-/*
-	@Override
-	public String toString() {
-		return "Hotel [Nome=" + nome + "Cidade=" + cidade + "Email=" + email + "]";
-	}
-*/
+    
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }
