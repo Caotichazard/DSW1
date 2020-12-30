@@ -13,12 +13,12 @@ import br.ufscar.dc.dsw.dao.*;
 import br.ufscar.dc.dsw.domain.*;
 
 @SpringBootApplication
-public class SpringDaraJpaApplication {
+public class Trabalho2Application {
 
-	private static final Logger log = LoggerFactory.getLogger(SpringDaraJpaApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(Trabalho2Application.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringDaraJpaApplication.class, args);
+		SpringApplication.run(Trabalho2Application.class, args);
 	}
 
 	@Bean
