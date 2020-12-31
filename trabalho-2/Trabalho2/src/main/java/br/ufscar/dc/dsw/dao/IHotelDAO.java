@@ -8,6 +8,7 @@ import br.ufscar.dc.dsw.domain.Hotel;
 public interface IHotelDAO extends CrudRepository<Hotel, Long>{
 	
     List<Hotel> findByCidade(String cidade);
-    
+    List<Hotel> findAll();
+    Hotel findById(long id);
 	
 }

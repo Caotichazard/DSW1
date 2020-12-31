@@ -59,7 +59,7 @@ public class Trabalho2Application {
 			}
 
 			
-			List<Hotel> hoteisCidade = hotelDAO.findByCidade("Descalvado");
+			List<Hotel> hoteisCidade = hotelDAO.findAll();
 			log.info("Imprimindo hoteis de descalvado - findAllbyCidadeHotels()");
 			for (Usuario u : hoteisCidade) {
 				log.info(u.toString());

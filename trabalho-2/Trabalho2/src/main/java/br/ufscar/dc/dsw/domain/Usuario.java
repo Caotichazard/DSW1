@@ -9,6 +9,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+
 @Entity
 @Table(name = "Usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -17,9 +21,13 @@ public abstract class Usuario {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
+    @NotBlank(message = "{NotBlank.usuario.login}")
+    @Size(min = 0, max = 60)
     @Column(nullable = false, unique = true, length = 60)
 	private String login;
 
+    @NotBlank(message = "{NotBlank.usuario.senha}")
+    @Size(min = 0, max = 60)
     @Column(nullable = false, length = 60)
 	private String senha;
 
@@ -45,31 +53,31 @@ public abstract class Usuario {
         this.papel = papel;
     }
  
-    void setId(Long id){
+    public void setId(Long id){
         this.id = id;
     }
-    Long getId(){
+    public Long getId(){
         return this.id;
     }
 
-    void setLogin(String login){
+    public void setLogin(String login){
         this.login = login;
     }
-    String getLogin(){
+    public String getLogin(){
         return this.login;
     }
 
-    void setSenha(String senha){
+    public void setSenha(String senha){
         this.senha = senha;
     }
-    String getSenha(){
+    public String getSenha(){
         return this.senha;
     }
 
-    void setPapel(String papel){
+    public void setPapel(String papel){
         this.papel = papel;
     }
-    String getPapel(){
+    public String getPapel(){
         return this.papel;
     }
 
