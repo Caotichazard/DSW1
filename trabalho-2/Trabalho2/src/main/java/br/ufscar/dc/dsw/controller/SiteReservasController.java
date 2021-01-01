@@ -21,13 +21,13 @@ public class SiteReservasController {
 	private ISiteReservasService service;
 	
 	@GetMapping("/cadastrar")
-	public String cadastrar(SiteReservas site) {
+	public String cadastrar(SiteReservas siteReservas) {
 		return "site/cadastro";
 	}
 
 	@GetMapping("/")
 	public String base(ModelMap model) {
-		model.addAttribute("SiteReservass",service.buscarTodos());
+		model.addAttribute("Sites",service.buscarTodos());
 		return "site/lista";
 	}
 	
@@ -52,7 +52,7 @@ public class SiteReservasController {
 	
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") String id, ModelMap model) {
-		model.addAttribute("site", service.buscarPorId(Long.parseLong(id)));
+		model.addAttribute("siteReservas", service.buscarPorId(Long.parseLong(id)));
 		return "site/cadastro";
 	}
 	
