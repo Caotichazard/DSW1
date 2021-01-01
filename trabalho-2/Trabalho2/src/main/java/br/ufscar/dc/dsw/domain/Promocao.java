@@ -115,6 +115,14 @@ public class Promocao{
         this.fim = fim;
     }
 
+    public String getHotelNome(){
+        return this.hotel.getNome();
+    }
+
+    public String getSiteNome(){
+        return this.site.getNome();
+    }
+
 
     @Override
 	public String toString() {
