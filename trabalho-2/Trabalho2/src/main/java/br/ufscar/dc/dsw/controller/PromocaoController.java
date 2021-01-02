@@ -13,15 +13,33 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.ufscar.dc.dsw.domain.Promocao;
 import br.ufscar.dc.dsw.service.spec.IPromocaoService;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+import br.ufscar.dc.dsw.service.spec.IHotelService;
+
+import br.ufscar.dc.dsw.service.spec.ISiteReservasService;
+
 @Controller
 @RequestMapping("/promocoes")
 public class PromocaoController {
 	
 	@Autowired
 	private IPromocaoService service;
+
+	@Autowired
+	private IHotelService hotelService;
+
+	@Autowired
+	private ISiteReservasService siteService;
 	
 	@GetMapping("/cadastrar")
-	public String cadastrar(Promocao promocao) {
+	public String cadastrar(Promocao promocao, ModelMap model) {
+		model.addAttribute("Hotels", hotelService.buscarTodos());
+		model.addAttribute("Sites", siteService.buscarTodos());
+		
 		return "promocao/cadastro";
 	}
 
@@ -40,19 +58,26 @@ public class PromocaoController {
 	
 	@PostMapping("/salvar")
 	public String salvar(@Valid Promocao promocao, BindingResult result, RedirectAttributes attr) {
-		
+		Logger logger = LoggerFactory.getLogger("log");
+		logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
+
 		if (result.hasErrors()) {
 			return "promocao/cadastro";
 		}
 		
+		
 		service.salvar(promocao);
 		attr.addFlashAttribute("sucess", "Promocao inserida com sucesso.");
-		return "redirect:/promocaos/listar";
+		return "redirect:/promocoes/listar";
 	}
 	
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") String id, ModelMap model) {
-		model.addAttribute("promocao", service.buscarPorId(Long.parseLong(id)));
+		Promocao promo = service.buscarPorId(Long.parseLong(id));
+		model.addAttribute("promocao", promo);
+		model.addAttribute("Hotels", promo.getHotel());
+		model.addAttribute("Sites", promo.getSite());
 		return "promocao/cadastro";
 	}
 	
@@ -62,10 +87,11 @@ public class PromocaoController {
 		if (result.hasErrors()) {
 			return "promocao/cadastro";
 		}
-
+		
+		
 		service.salvar(promocao);
 		attr.addFlashAttribute("sucess", "Promocao editada com sucesso.");
-		return "redirect:/promocaos/listar";
+		return "redirect:/promocoes/listar";
 	}
 	
 	@GetMapping("/excluir/{id}")

@@ -17,8 +17,8 @@ public class PromocaoService implements IPromocaoService {
     @Autowired
     IPromocaoDAO dao;
 
-    public void salvar(Promocao Promocao) {
-        dao.save(Promocao);
+    public void salvar(Promocao promocao) {
+        dao.save(promocao);
     }
 
     public void excluir(Long id) {

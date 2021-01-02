@@ -14,7 +14,7 @@
 						<span>Lista de Promocoes</span>
 					</li>
 				</ul>
-				<a class="btn btn-primary btn-md" th:href="@{/sites/cadastrar}" role="button"> 
+				<a class="btn btn-primary btn-md" th:href="@{/promocoes/cadastrar}" role="button"> 
 					<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
 					<span>Nova Promocao</span>
 				</a>
@@ -47,7 +47,7 @@
 							<td th:text="${promocao.inicio}"></td>
 							<td th:text="${promocao.fim}"></td>
 							<td colspan="2">
-								<a class="btn btn-info btn-sm" th:href="@{/sites/editar/{id} (id=${promocao.id}) }"
+								<a class="btn btn-info btn-sm" th:href="@{/promocoes/editar/{id} (id=${promocao.id}) }"
 									role="button"> 
 									<span class="oi oi-brush" title="Editar" aria-hidden="true"> </span>
 								</a>

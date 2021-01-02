@@ -1,5 +1,7 @@
 package br.ufscar.dc.dsw.domain;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,31 +10,39 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 
 
 @Entity
 @Table(name = "Promocao")
-public class Promocao{
+public class Promocao {
 
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne
-	@JoinColumn(name = "hotel_id")
-	private Hotel hotel;
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
 
     @ManyToOne
 	@JoinColumn(name = "site_id")
     private SiteReservas site;
     
     @Column(nullable = false)
+    @NotNull
     private String preco;
 
     @Column(nullable = false)
+    @NotNull
     private String inicio;
 
     @Column(nullable = false)
+    @NotNull
     private String fim;
+
+    
 
 
     public Promocao(){
@@ -122,6 +132,9 @@ public class Promocao{
     public String getSiteNome(){
         return this.site.getNome();
     }
+
+    
+
 
 
     @Override
