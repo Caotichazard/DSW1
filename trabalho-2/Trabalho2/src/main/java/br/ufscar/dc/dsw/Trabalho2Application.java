@@ -1,8 +1,12 @@
 package br.ufscar.dc.dsw;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -11,6 +15,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import br.ufscar.dc.dsw.dao.*;
 import br.ufscar.dc.dsw.domain.*;
+
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class Trabalho2Application {
@@ -22,33 +29,37 @@ public class Trabalho2Application {
 	}
 
 	@Bean
-	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, IPromocaoDAO promocaoDAO, IHotelDAO hotelDAO) {
+	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, IPromocaoDAO promocaoDAO, IHotelDAO hotelDAO, BCryptPasswordEncoder encoder) {
 		return (args) -> {
-			Hotel ibis = new Hotel("ibis@hotel.com","ibis123","812376478126","ibis","São Carlos");
+
+			Usuario admin = new Usuario("admin",encoder.encode("admin"),"ROLE_ADMIN");
+			usuarioDAO.save(admin);
+
+			Hotel ibis = new Hotel("ibis@hotel.com",encoder.encode("ibis123"),"812376478126","ibis","São Carlos");
 			log.info("adicionando Hotel Ibis a base de dados");
 			usuarioDAO.save(ibis);
 
-			Hotel catussaba = new Hotel("catussaba@hotel.com","catussaba123","43846897192","Catussaba","Salvador");
+			Hotel catussaba = new Hotel("catussaba@hotel.com",encoder.encode("catussaba123"),"43846897192","Catussaba","Salvador");
 			log.info("adicionando Hotel Catussaba a base de dados");
 			usuarioDAO.save(catussaba);
 
-			Hotel catussaba2 = new Hotel("catussaba2@hotel.com","catussaba456","4182367812387","Catussaba","Descalvado");
+			Hotel catussaba2 = new Hotel("catussaba2@hotel.com",encoder.encode("catussaba456"),"4182367812387","Catussaba","Descalvado");
 			log.info("adicionando Hotel Catussaba a base de dados");
 			usuarioDAO.save(catussaba2);
 
-			Hotel descalvado = new Hotel("descalvado@hotel.com","descalvado123","98235729473","descalvado","Descalvado");
+			Hotel descalvado = new Hotel("descalvado@hotel.com",encoder.encode("descalvado123"),"98235729473","descalvado","Descalvado");
 			log.info("adicionando Hotel Descalvado a base de dados");
 			usuarioDAO.save(descalvado);
 
-			SiteReservas trivago = new SiteReservas("trivago@site.com","trivago123","trivago.com","trivago","9812642716");
+			SiteReservas trivago = new SiteReservas("trivago@site.com",encoder.encode("trivago123"),"trivago.com","trivago","9812642716");
 			log.info("adicionando Site trivago a base de dados");
 			usuarioDAO.save(trivago);
 
-			SiteReservas giramundo = new SiteReservas("giramundo@site.com","giramundo123","giramundo.com","giramundo","3894724792");
+			SiteReservas giramundo = new SiteReservas("giramundo@site.com",encoder.encode("giramundo123"),"giramundo.com","giramundo","3894724792");
 			log.info("adicionando Site giramundo a base de dados");
 			usuarioDAO.save(giramundo);
 
-			SiteReservas booking = new SiteReservas("booking@site.com","booking123","booking.com","booking","624859902348");
+			SiteReservas booking = new SiteReservas("booking@site.com",encoder.encode("booking123"),"booking.com","booking","624859902348");
 			log.info("adicionando Site booking a base de dados");
 			usuarioDAO.save(booking);
 
@@ -96,6 +107,11 @@ public class Trabalho2Application {
 			for (Promocao p : promocoesSite) {
 				log.info(p.toString());
 			}
+
+
+			
+	 
+	 
 			return;
 			
 		};

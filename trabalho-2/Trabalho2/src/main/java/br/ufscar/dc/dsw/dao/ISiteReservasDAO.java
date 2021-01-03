@@ -11,5 +11,6 @@ public interface ISiteReservasDAO extends CrudRepository<SiteReservas, Long>{
 	List<SiteReservas> findAll();
 	SiteReservas save(SiteReservas usuario);
 	void deleteById(Long id);
+	SiteReservas findByLogin(String login);
 	
 }

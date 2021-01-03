@@ -7,5 +7,6 @@ public interface IHotelService {
 	List<Hotel> buscarPorCidade(String cidade);
 	void salvar(Hotel Hotel);
 	void excluir(Long id);
+	Hotel buscarPorLogin(String login);
 	
 }

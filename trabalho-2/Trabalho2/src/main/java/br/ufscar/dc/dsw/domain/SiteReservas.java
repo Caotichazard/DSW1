@@ -33,7 +33,7 @@ public class SiteReservas extends Usuario {
     }
 
     public SiteReservas(String email, String senha, String Url, String nome, String telefone){
-        super(email, senha, "SITE");
+        super(email, senha, "ROLE_SITE");
         this.Url = Url;
         this.telefone = telefone;
         this.nome = nome;

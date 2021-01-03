@@ -1,5 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +15,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.ufscar.dc.dsw.domain.Promocao;
 import br.ufscar.dc.dsw.service.spec.IPromocaoService;
 
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 import br.ufscar.dc.dsw.service.spec.IHotelService;
 
@@ -25,7 +31,7 @@ import br.ufscar.dc.dsw.service.spec.ISiteReservasService;
 @Controller
 @RequestMapping("/promocoes")
 public class PromocaoController {
-	
+
 	@Autowired
 	private IPromocaoService service;
 
@@ -34,32 +40,54 @@ public class PromocaoController {
 
 	@Autowired
 	private ISiteReservasService siteService;
-	
+
 	@GetMapping("/cadastrar")
 	public String cadastrar(Promocao promocao, ModelMap model) {
-		model.addAttribute("Hotels", hotelService.buscarTodos());
-		model.addAttribute("Sites", siteService.buscarTodos());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) auth.getPrincipal();
+		System.out.println(userDetails.getAuthorities());
 		
+		if(auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_HOTEL"))){
+			model.addAttribute("Hotels",hotelService.buscarPorLogin(userDetails.getUsername()));
+			model.addAttribute("Sites", siteService.buscarTodos());
+		}
+		if(auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_SITE"))){
+			model.addAttribute("Hotels", hotelService.buscarTodos());
+			model.addAttribute("Sites",siteService.buscarPorLogin(userDetails.getUsername()));
+		}
+
+		
+
 		return "promocao/cadastro";
 	}
 
 	@GetMapping("/")
 	public String base(ModelMap model) {
-		model.addAttribute("Promocoes",service.buscarTodos());
+		model.addAttribute("Promocoes", service.buscarTodos());
 		return "promocao/lista";
 	}
-	
+
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("Promocoes",service.buscarTodos());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) auth.getPrincipal();
+		System.out.println(userDetails.getAuthorities());
+		
+		if(auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_HOTEL"))){
+			System.out.println("AAAAAAAAAAA");
+			model.addAttribute("Promocoes",service.buscarPorHotel(hotelService.buscarPorLogin(userDetails.getUsername())));
+		}
+		if(auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_SITE"))){
+			model.addAttribute("Promocoes",service.buscarPorSite(siteService.buscarPorLogin(userDetails.getUsername())));
+		}
+		//model.addAttribute("Promocoes",service.buscarTodos());
 		return "promocao/lista";
 	}
 	
 	
 	@PostMapping("/salvar")
 	public String salvar(@Valid Promocao promocao, BindingResult result, RedirectAttributes attr) {
-		Logger logger = LoggerFactory.getLogger("log");
-		logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		
 
 
 		if (result.hasErrors()) {

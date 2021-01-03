@@ -6,5 +6,6 @@ public interface ISiteReservasService {
 	List<SiteReservas> buscarTodos();
 	void salvar(SiteReservas SiteReservas);
 	void excluir(Long id);
+	SiteReservas buscarPorLogin(String login);
 	
 }

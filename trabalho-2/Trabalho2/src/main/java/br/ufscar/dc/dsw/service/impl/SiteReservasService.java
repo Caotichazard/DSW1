@@ -34,7 +34,10 @@ public class SiteReservasService implements ISiteReservasService {
     }
 
 
-    
+    @Transactional(readOnly = true)
+	public SiteReservas buscarPorLogin(String login) {
+		return dao.findByLogin(login);
+	}
     
 	
 	

@@ -36,6 +36,11 @@ public class HotelService implements IHotelService {
     @Transactional(readOnly = true)
 	public List<Hotel> buscarPorCidade(String cidade) {
 		return dao.findByCidade(cidade);
+	}
+	
+	@Transactional(readOnly = true)
+	public Hotel buscarPorLogin(String login) {
+		return dao.findByLogin(login);
     }
 	
 	

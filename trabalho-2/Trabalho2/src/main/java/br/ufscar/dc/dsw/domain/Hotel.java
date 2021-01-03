@@ -42,7 +42,7 @@ public class Hotel extends Usuario {
     }
 
     public Hotel(String login, String senha, String CNPJ, String nome, String cidade){
-        super(login, senha, "HOTEL");
+        super(login, senha, "ROLE_HOTEL");
         this.CNPJ = CNPJ;
         this.cidade = cidade;
         this.nome = nome;

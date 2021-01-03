@@ -8,33 +8,32 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Usuario {
+public class Usuario {
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
     @NotBlank(message = "{NotBlank.usuario.login}")
-    @Size(min = 0, max = 60)
     @Column(nullable = false, unique = true, length = 60)
 	private String login;
 
     @NotBlank(message = "{NotBlank.usuario.senha}")
-    @Size(min = 0, max = 60)
     @Column(nullable = false, length = 60)
 	private String senha;
 
     @Column(nullable = false, length = 60)
 	private String papel;
 
-
+    @Column(nullable = false)
+    private boolean enabled;
 
     public Usuario(){
 
@@ -81,6 +80,15 @@ public abstract class Usuario {
         return this.papel;
     }
 
+
+    public boolean isEnabled() {
+		return enabled;
+	}
+	
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+    }
+    
     @Override
 	public String toString() {
 		return "Usuario [Login= " + login + " Papel= " + papel +"]";

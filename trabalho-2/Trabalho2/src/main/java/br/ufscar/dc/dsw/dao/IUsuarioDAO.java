@@ -10,4 +10,5 @@ public interface IUsuarioDAO extends CrudRepository<Usuario, Long>{
 	List<Usuario> findAll();
 	Usuario save(Usuario usuario);
 	void deleteById(Long id);
+	Usuario findByLogin(String login);
 }

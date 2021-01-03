@@ -2,6 +2,7 @@ package br.ufscar.dc.dsw.controller;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,9 @@ public class HotelController {
 	
 	@Autowired
 	private IHotelService service;
+
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Hotel hotel) {
@@ -48,7 +52,7 @@ public class HotelController {
 		if (result.hasErrors()) {
 			return "hotel/cadastro";
 		}
-		
+		Hotel.setSenha(encoder.encode(Hotel.getSenha()));
 		service.salvar(Hotel);
 		attr.addFlashAttribute("sucess", "Hotel inserida com sucesso.");
 		return "redirect:/hotels/listar";

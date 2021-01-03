@@ -10,5 +10,6 @@ public interface IHotelDAO extends CrudRepository<Hotel, Long>{
     List<Hotel> findByCidade(String cidade);
     List<Hotel> findAll();
     Hotel findById(long id);
+    Hotel findByLogin(String login);
 	
 }

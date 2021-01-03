@@ -2,6 +2,7 @@ package br.ufscar.dc.dsw.controller;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,9 @@ public class SiteReservasController {
 	
 	@Autowired
 	private ISiteReservasService service;
+
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(SiteReservas siteReservas) {
@@ -63,6 +67,7 @@ public class SiteReservasController {
 			return "site/cadastro";
 		}
 
+		SiteReservas.setSenha(encoder.encode(SiteReservas.getSenha()));
 		service.salvar(SiteReservas);
 		attr.addFlashAttribute("sucess", "SiteReservas editada com sucesso.");
 		return "redirect:/sites/listar";
