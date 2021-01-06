@@ -30,10 +30,10 @@
 				<div class="form-row">
 					
 					<div class="form-group col-md-6">
-						<label for="hotel">Hotel</label> 
+						<label for="hotel" th:text = "#{Hotel}"></label> 
 						<select id="hotel" class="form-control" th:field="*{hotel}"
 							th:classappend="${#fields.hasErrors('hotel')} ? is-invalid">
-							<option value="">Selecione</option>
+							<option value="" th:text = "#{Selecione}"></option>
 							<option th:each="hotel : ${Hotels}" th:value="${hotel.id}"
 								th:text="${hotel.nome}"></option>
 						</select>
@@ -44,10 +44,10 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="site">Site de Reservas</label> 
+						<label for="site" th:text = "#{Site.Reservas}"></label> 
 						<select id="site" class="form-control" th:field="*{site}"
 							th:classappend="${#fields.hasErrors('site')} ? is-invalid">
-							<option value="">Selecione</option>
+							<option value="" th:text = "#{Selecione}"></option>
 							<option th:each="site : ${Sites}" th:value="${site.id}"
 								th:text="${site.nome}"></option>
 						</select>
@@ -58,7 +58,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="inicio">Inicio</label> 
+						<label for="inicio" th:text = "#{Inicio}"></label> 
 						<input type="text" class="form-control" id="inicio" placeholder="dd-mm-aaaa"
 							autofocus="autofocus" th:field="*{inicio}"
 							th:classappend="${#fields.hasErrors('inicio')} ? is-invalid"
@@ -70,7 +70,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="fim">Fim</label> 
+						<label for="fim" th:text = "#{Fim}"></label> 
 						<input type="text" class="form-control" id="fim" placeholder="dd-mm-aaaa"
 							autofocus="autofocus" th:field="*{fim}"
 							th:classappend="${#fields.hasErrors('fim')} ? is-invalid"
@@ -83,7 +83,7 @@
 					
 
 					<div class="form-group col-md-6">
-						<label for="preco">Preço</label> 
+						<label for="preco" th:text = "#{Preço}"></label> 
 						<input type="text" class="form-control" id="preco" placeholder="0000,00"
 							autofocus="autofocus" th:field="*{preco}"
 							th:classappend="${#fields.hasErrors('preco')} ? is-invalid" 

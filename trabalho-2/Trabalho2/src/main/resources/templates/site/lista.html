@@ -11,12 +11,12 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
 						<i class="oi oi-caret-right"></i>
-						<span>Lista de Sites</span>
+						<span th:text = "#{Lista.Sites}"></span>
 					</li>
 				</ul>
 				<a class="btn btn-primary btn-md" th:href="@{/sites/cadastrar}" role="button"> 
 					<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
-					<span>Novo Site</span>
+					<span th:text = "#{Novo.Site}"></span>
 				</a>
 			</div>
 		</nav>
@@ -30,10 +30,10 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>URL</th>
-							<th>Nome</th>
-							<th>Cidade</th>
-							<th>Ação</th>
+							<th th:text = "#{URL}"></th>
+							<th th:text = "#{Nome}"></th>
+							<th th:text = "#{cidade}"></th>
+							<th th:text = "#{Ação}"></th>
 						</tr>
 					</thead>
 					<tbody>

@@ -10,11 +10,11 @@
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><i class="oi oi-caret-right"></i>
-						<span>Cadastrar Sites</span></li>
+						<span th:text = "#{Cadastrar.Sites}"></span></li>
 				</ul>
 				<a class="btn btn-primary btn-md" th:href="@{/sites/listar}"
 					role="button"> <span class="oi oi-spreadsheet" title="Listar"
-					aria-hidden="true"></span> <span>Listar Sites</span>
+					aria-hidden="true"></span> <span th:text = "#{Listar.Sites}"></span>
 				</a>
 			</div>
 		</nav>
@@ -29,7 +29,7 @@
 				
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="nome">Nome</label> 
+						<label for="nome" th:text = "#{Nome}"></label> 
 						<input type="text" class="form-control" id="nome" placeholder="Nome"
 							autofocus="autofocus" th:field="*{nome}"
 							th:classappend="${#fields.hasErrors('nome')} ? is-invalid" />
@@ -40,7 +40,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="Url">Url</label> 
+						<label for="Url"th:text = "#{Url}"></label> 
 						<input type="text" class="form-control" id="Url" placeholder="Site.com"
 							autofocus="autofocus" th:field="*{Url}"
 							th:classappend="${#fields.hasErrors('Url')} ? is-invalid" />
@@ -51,7 +51,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="login">Login</label> 
+						<label for="login" th:text = "#{Login}"></label> 
 						<input type="text" class="form-control" id="login" placeholder="Login"
 							autofocus="autofocus" th:field="*{login}"
 							th:classappend="${#fields.hasErrors('login')} ? is-invalid" />
@@ -62,7 +62,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="senha">Senha</label> 
+						<label for="senha" th:text = "#{Senha}"></label> 
 						<input type="text" class="form-control" id="senha" placeholder="Senha"
 							autofocus="autofocus" th:field="*{senha}"
 							th:classappend="${#fields.hasErrors('senha')} ? is-invalid" />
@@ -74,7 +74,7 @@
 					
 
 					<div class="form-group col-md-6">
-						<label for="telefone">Telefone</label> 
+						<label for="telefone" th:text = "#{Telefone}"></label> 
 						<input type="text" class="form-control" id="telefone" placeholder="+XX XX XXXXXXXXX"
 							autofocus="autofocus" th:field="*{telefone}"
 							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid" 
@@ -88,7 +88,7 @@
 
 				<input type="hidden" id="id" th:field="*{id}" />
 				<input type="hidden" id="papel" th:field="*{papel}" placeholder="SITE" />
-				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+				<button type="submit" class="btn btn-primary btn-sm" th:text = "#{Salvar}"></button>
 			</form>
 		</div>
 	</section>

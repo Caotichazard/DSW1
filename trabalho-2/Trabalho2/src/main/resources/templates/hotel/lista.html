@@ -11,12 +11,12 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
 						<i class="oi oi-caret-right"></i>
-						<span>Lista de Hotels</span>
+						<span th:text="#{Lista.Hotels}"></span>
 					</li>
 				</ul>
 				<a class="btn btn-primary btn-md" th:href="@{/hotels/cadastrar}" role="button"> 
 					<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
-					<span>Nova Hotel</span>
+					<span th:text="#{Novo.Hotel}"></span>
 				</a>
 			</div>
 		</nav>
@@ -30,10 +30,10 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>CNPJ</th>
-							<th>Nome</th>
-							<th>Cidade</th>
-							<th>Ação</th>
+							<th th:text = "#{CNPJ}"></th>
+							<th th:text = "#{Nome}"></th>
+							<th th:text = "#{cidade}"></th>
+							<th th:text = "#{Ação}"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,13 +49,13 @@
 							<td colspan="2">
 								<a class="btn btn-info btn-sm" th:href="@{/hotels/editar/{id} (id=${hotel.id}) }"
 									role="button"> 
-									<span class="oi oi-brush" title="Editar" aria-hidden="true"> </span>
+									<span class="oi oi-brush" th:text = "#{Editar}" aria-hidden="true"> </span>
 								</a>
 								<button
 									th:id="${'btn_hotels/excluir/' + hotel.id}"
 									type="button" class="btn btn-danger btn-sm"
 									data-toggle="modal" data-target="#myModal">
-									<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+									<span class="oi oi-circle-x" title="#{Excluir}" aria-hidden="true"></span>
 								</button>
 							</td>
 						</tr>

@@ -2,7 +2,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout2}">
 <head>
-<title th:text="#{login.message}"></title>
+<title th:text="#{Login}"></title>
 </head>
 <body>
 	<div layout:fragment="content" th:remove="tag">
@@ -18,12 +18,12 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="username" th:text="Username"></label>: <input
+						<label for="username" th:text="#{Username}"></label>: <input
 							type="text" id="username" name="username" class="form-control"
 							autofocus="autofocus" th:placeholder="Username">
 					</div>
 					<div class="form-group">
-						<label for="password" th:text="Password"></label>: <input
+						<label for="password" th:text="#{Password}"></label>: <input
 							type="password" id="password" name="password"
 							class="form-control" th:placeholder="Password">
 					</div>
