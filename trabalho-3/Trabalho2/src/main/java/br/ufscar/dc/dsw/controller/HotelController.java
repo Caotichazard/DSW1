@@ -1,5 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import java.io.IOException;
 import java.util.List;
 import org.json.simple.JSONObject;
@@ -16,12 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import br.ufscar.dc.dsw.domain.Hotel;
 import br.ufscar.dc.dsw.service.spec.IHotelService;
 
-
+@CrossOrigin
 @RestController
-public class HotelRestController {
+public class HotelController {
 	
 	@Autowired
 	private IHotelService service;
@@ -45,41 +48,44 @@ public class HotelRestController {
 				}
 		}
 
-			hotel.setNome((String) json.get("nome"));
-			hotel.setCNPJ((String) json.get("CNPJ"));
-			hotel.setCidade((String) json.get("cidade"));
+
 			hotel.setLogin((String) json.get("login"));
 			hotel.setSenha((String) json.get("senha"));
 			hotel.setPapel((String) json.get("papel"));
+
+			hotel.setNome((String) json.get("nome"));
+			hotel.setCNPJ((String) json.get("cnpj"));
+			hotel.setCidade((String) json.get("cidade"));
+			
 	}
 	
-	@GetMapping("/hoteis")
+	@GetMapping(path = "/hoteis")
 	public ResponseEntity<List<Hotel>> lista() {
-			List<Hotel> lista = service.buscarTodos();
-			if (lista.isEmpty()) {
-				return ResponseEntity.notFound().build();
-			}
-			return ResponseEntity.ok(lista);
-	}
-
-	@GetMapping(path = "/hoteis/{id}")
-		public ResponseEntity<Hotel> lista(@PathVariable("id") long id) {
-			Hotel hotel = service.buscarPorId(id);
-			if (hotel == null) {
-				return ResponseEntity.notFound().build();
-			}
-			return ResponseEntity.ok(hotel);
+		List<Hotel> lista = service.buscarTodos();
+		if (lista.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(lista);
 	}
 
 	@GetMapping(path = "/hoteis/cidades/{cidade}")
-		public ResponseEntity<List<Hotel>> lista(@PathVariable("cidade") String cidade) {
-			List<Hotel> lista = service.buscarPorCidade(cidade);
-			if (lista.isEmpty()) {
-				return ResponseEntity.notFound().build();
-			}
-			return ResponseEntity.ok(lista);
+	public ResponseEntity<List<Hotel>> lista(@PathVariable("cidade") String cidade) {
+		List<Hotel> lista = service.buscarPorCidade(cidade);
+		if (lista.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(lista);
 	}
-	
+
+	@GetMapping(path = "/hoteis/{id}")
+	public ResponseEntity<Hotel> lista(@PathVariable("id") long id) {
+		Hotel hotel = service.buscarPorId(id);
+		if (hotel == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(hotel);
+	 }
+	 
 	@PostMapping(path = "/hoteis")
 	@ResponseBody
 	public ResponseEntity<Hotel> cria(@RequestBody JSONObject json) {
@@ -87,7 +93,7 @@ public class HotelRestController {
 			if (isJSONValid(json.toString())) {
 				Hotel hotel = new Hotel();
 				parse(hotel, json);
-				service.salvar(hotel);;
+				service.salvar(hotel);
 				return ResponseEntity.ok(hotel);
 			} else {
 				return ResponseEntity.badRequest().body(null);
@@ -96,39 +102,37 @@ public class HotelRestController {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
 		}
-	}
+	 }
+	 
 	@PutMapping(path = "/hoteis/{id}")
 	public ResponseEntity<Hotel> atualiza(@PathVariable("id") long id, @RequestBody JSONObject json) {
-			try {
-				if (isJSONValid(json.toString())) {
-					Hotel hotel = service.buscarPorId(id);
-					if (hotel == null) {
-						return ResponseEntity.notFound().build();
-					} else {
-						parse(hotel, json);
-						service.salvar(hotel);
-						return ResponseEntity.ok(hotel);
-					}
+		try {
+			if (isJSONValid(json.toString())) {
+				Hotel hotel = service.buscarPorId(id);
+				if (hotel == null) {
+					return ResponseEntity.notFound().build();
 				} else {
-					return ResponseEntity.badRequest().body(null);
+					parse(hotel, json);
+					service.salvar(hotel);
+					return ResponseEntity.ok(hotel);
 				}
-			} catch (Exception e) {
-				return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
-			}
-	}
-	
-	
-	@DeleteMapping(path = "/estados/{id}")
-	public ResponseEntity<Boolean> remove(@PathVariable("id") long id) {
-
-			Hotel estado = service.buscarPorId(id);
-			if (estado == null) {
-				return ResponseEntity.notFound().build();
 			} else {
-				service.excluir(id);
-				return ResponseEntity.noContent().build();
+				return ResponseEntity.badRequest().body(null);
 			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
 		}
+ 	}
 	
-	
+	@DeleteMapping(path = "/hoteis/{id}")
+ 	public ResponseEntity<Boolean> remove(@PathVariable("id") long id) {
+
+		Hotel hotel = service.buscarPorId(id);
+		if (hotel == null) {
+			return ResponseEntity.notFound().build();
+		} else {
+			service.excluir(id);
+			return ResponseEntity.noContent().build();
+		}
+	}
 }

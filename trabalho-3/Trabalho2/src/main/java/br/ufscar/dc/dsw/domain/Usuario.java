@@ -21,19 +21,18 @@ public class Usuario {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
-    @NotBlank(message = "{NotBlank.usuario.login}")
+    
     @Column(nullable = false, unique = true, length = 60)
 	private String login;
 
-    @NotBlank(message = "{NotBlank.usuario.senha}")
+    
     @Column(nullable = false, length = 60)
 	private String senha;
 
     @Column(nullable = false, length = 60)
 	private String papel;
 
-    @Column(nullable = false)
-    private boolean enabled;
+    
 
     public Usuario(){
 
@@ -81,13 +80,7 @@ public class Usuario {
     }
 
 
-    public boolean isEnabled() {
-		return enabled;
-	}
-	
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-    }
+    
     
     @Override
 	public String toString() {

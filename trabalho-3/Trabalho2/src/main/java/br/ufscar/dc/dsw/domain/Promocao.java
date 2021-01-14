@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 
 @Entity
@@ -24,10 +26,12 @@ public class Promocao {
     private Long id;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
     @ManyToOne
+    @JsonBackReference
 	@JoinColumn(name = "site_id")
     private SiteReservas site;
     

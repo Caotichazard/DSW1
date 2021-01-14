@@ -40,18 +40,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-				http.authorizeRequests()
-				.antMatchers("/sites", "/hoteis", "/promocoes").permitAll()
-.antMatchers("/sites/{\\d+}", "/hoteis/{\\d+}").permitAll()
-.antMatchers("/promocoes/{\\d+}").permitAll()
-.antMatchers("/hoteis/cidades/{\\w+}").permitAll()
-.antMatchers("/promocoes/sites/{\\d+}").permitAll()
-.antMatchers("/promocoes/hoteis/{\\d+}").permitAll()
-// Demais linhas
-.anyRequest().authenticated()
-.and()
-.formLogin().loginPage("/login").permitAll()
-.and()
-.logout().logoutSuccessUrl("/").permitAll();
+		http.csrf().disable().authorizeRequests()
+		// Controladores REST
+		.antMatchers("/sites", "/hoteis", "/promocoes").permitAll()
+		.antMatchers("/sites/{\\d+}", "/hoteis/{\\d+}").permitAll()
+		.antMatchers("/promocoes/{\\d+}").permitAll()
+		.antMatchers("/hoteis/cidades/{\\w+}").permitAll()
+		.antMatchers("/promocoes/sites/{\\d+}").permitAll()
+		.antMatchers("/promocoes/hoteis/{\\d+}").permitAll()
+		// Demais linhas
+		.anyRequest().authenticated()
+		.and()
+		.formLogin().loginPage("/login").permitAll()
+		.and()
+		.logout().logoutSuccessUrl("/").permitAll();
 	}
 }

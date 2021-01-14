@@ -12,26 +12,28 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "Hotel")
 public class Hotel extends Usuario {
 
-    @NotBlank(message = "{NotBlank.hotel.cnpj}")
-    @Size(min = 0, max = 25, message = "{Size.hotel.cnpj}")
+    
     @Column(nullable = false, unique = true, length = 25)
     private String CNPJ;
 
-    @NotBlank(message = "{NotBlank.hotel.nome}")
-    @Size(min = 0, max = 260)
+    
+    
     @Column(nullable = false, length = 260)
     private String nome;
 
-    @NotBlank(message = "{NotBlank.hotel.cidade}")
-    @Size(min = 0, max = 260)
+    
+    
     @Column(nullable = false, length = 260)
     private String cidade;
 
     @OneToMany(mappedBy = "hotel")
+    @JsonManagedReference
     private List<Promocao> promocoes;
     
     private String idString;
