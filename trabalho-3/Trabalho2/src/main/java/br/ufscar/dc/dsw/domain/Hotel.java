@@ -12,9 +12,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
+@JsonIgnoreProperties(value = { "promocoes" })
 @Table(name = "Hotel")
 public class Hotel extends Usuario {
 
@@ -33,11 +35,9 @@ public class Hotel extends Usuario {
     private String cidade;
 
     @OneToMany(mappedBy = "hotel")
-    @JsonManagedReference
     private List<Promocao> promocoes;
     
-    private String idString;
-    private String loginString;
+
 
     public Hotel(){
 
@@ -103,13 +103,6 @@ public class Hotel extends Usuario {
     }
 
     
-
-    /**
-     * @param idString the idString to set
-     */
-    public void setIdString(String idString) {
-        this.idString = idString;
-    }
 
     
     

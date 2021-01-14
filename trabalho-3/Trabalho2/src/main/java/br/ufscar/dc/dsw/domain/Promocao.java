@@ -26,12 +26,12 @@ public class Promocao {
     private Long id;
 
     @ManyToOne
-    @JsonBackReference
+    
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
     @ManyToOne
-    @JsonBackReference
+    
 	@JoinColumn(name = "site_id")
     private SiteReservas site;
     

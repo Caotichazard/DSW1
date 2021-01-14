@@ -9,11 +9,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 
 @Entity
+@JsonIgnoreProperties(value = { "promocoes" })
 @Table(name = "SiteReservas")
 public class SiteReservas extends Usuario {
 
