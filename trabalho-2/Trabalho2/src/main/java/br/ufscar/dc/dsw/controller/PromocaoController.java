@@ -1,6 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.ufscar.dc.dsw.domain.Promocao;
 import br.ufscar.dc.dsw.service.spec.IPromocaoService;
+import br.ufscar.dc.dsw.service.impl.PromocaoService;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import br.ufscar.dc.dsw.service.spec.IHotelService;
 
 import br.ufscar.dc.dsw.service.spec.ISiteReservasService;
+
 
 @Controller
 @RequestMapping("/promocoes")
@@ -93,7 +96,9 @@ public class PromocaoController {
 		if (result.hasErrors()) {
 			return "promocao/cadastro";
 		}
-		
+		if (verificaDataPromocao(promocao)){
+			return "promocao/cadastro";
+		}
 		
 		service.salvar(promocao);
 		attr.addFlashAttribute("sucess", "Promocao inserida com sucesso.");
@@ -116,7 +121,9 @@ public class PromocaoController {
 			return "promocao/cadastro";
 		}
 		
-		
+		if (verificaDataPromocao(promocao)){
+			return "promocao/cadastro";
+		}
 		service.salvar(promocao);
 		attr.addFlashAttribute("sucess", "Promocao editada com sucesso.");
 		return "redirect:/promocoes/listar";
@@ -131,5 +138,19 @@ public class PromocaoController {
 			model.addAttribute("sucess", "Promocao excluído com sucesso.");
 		}
 		return listar(model);
+	}
+
+	private boolean verificaDataPromocao(Promocao promocao){
+		List<Promocao> promocoes = service.buscarPorHotel(promocao.getHotel());
+		System.out.println("vamo funciona vamo pff vamo sim/n");
+		for(int i = 0; i< promocoes.size(); i++){
+			System.out.println("looperson");
+			if(promocoes.get(i).getSite().equals(promocao.getSite()) && promocoes.get(i).getInicio().equals(promocao.getInicio()) && promocoes.get(i).getFim().equals(promocao.getFim())) {
+				System.out.println("charlie brown hag loose");
+				return true;
+			}
+		}
+		return false;	
+
 	}
 }

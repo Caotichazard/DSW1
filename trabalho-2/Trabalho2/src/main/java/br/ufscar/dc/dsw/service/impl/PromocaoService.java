@@ -35,13 +35,13 @@ public class PromocaoService implements IPromocaoService {
         return dao.findAll();
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public List<Promocao> buscarPorHotel(Hotel hotel) {
         
         return dao.findByHotel(hotel);
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public List<Promocao> buscarPorSite(SiteReservas site) {
         
         return dao.findBySite(site);
