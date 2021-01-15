@@ -15,17 +15,7 @@ Reynold Navarro Mazo
 Os arquivos do projeto se encontram na pasta Trabalho2/
 
 ### Banco de dados
-Para o uso deste programa é necessário ter o MySQL instalado na máquina
 
-Usando o arquivo create.sql localizado em sistemaHotel/reservasHotel/dc/MySQL/create.sql
-
-executar os seguintes comandos no terminal na raiz do projeto
-
-`mysql -uroot -p`
-
-`source db/MySQL/create.sql`
-
-Com isso serão geradas as tabelas necessárias para o banco de dados e serão criadas entradas básicas para hoteis e sites de reservas
 
 Entidades criadas:
 * Hoteis
