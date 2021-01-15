@@ -10,11 +10,11 @@
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><i class="oi oi-caret-right"></i>
-						<span>Cadastrar Promoção</span></li>
+						<span th:text = "#{Nova.Promocao}"></span></li>
 				</ul>
 				<a class="btn btn-primary btn-md" th:href="@{/promocoes/listar}"
 					role="button"> <span class="oi oi-spreadsheet" title="Listar"
-					aria-hidden="true"></span> <span>Listar Promoção</span>
+					aria-hidden="true"></span> <span th:text = "#{Lista.Promocoes}"></span>
 				</a>
 			</div>
 		</nav>
@@ -97,7 +97,7 @@
 
 				<input type="hidden" id="id" th:field="*{id}" />
 				
-				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+				<button type="submit" class="btn btn-primary btn-sm" th:text = "#{Salvar}"></button>
 			</form>
 		</div>
 	</section>
